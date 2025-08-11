@@ -27,7 +27,7 @@ node("macbook"){
             cd ${iaqPath} && ls -la
         """
     }
-    stage('build images'){
+    stage('build images and push to acr'){
         if (params.SERVICES == 'datalogger-agent') {
             sh """
                 cd ${datalogPath} && ls -la
@@ -36,28 +36,27 @@ node("macbook"){
         } else if (params.SERVICES == 'iaq-agent') {
             sh """
                 cd ${iaqPath} && ls -la
-                docker buildx build --platform linux/amd64,linux/arm64 -t iaq-agent:${TAG} .
-                docker tag iaq-agent:${TAG} testiotacr.azurecr.io/iaq-agent:${TAG}
+                docker buildx build --platform linux/amd64,linux/arm64 -t testiotacr.azurecr.io/iaq-agent:${TAG} --push .
             """
         }
     }
-    stage('push images to ACR'){
-        withCredentials([azureServicePrincipal('azure-credentials')]) {
-            if (params.SERVICES == 'datalogger-agent') {
-                sh """
-                    az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
-                    az acr login --name testiotacr
-                    docker push testiotacr.azurecr.io/datalogger-agent:${TAG}
-                """
-            } else if (params.SERVICES == 'iaq-agent') {
-                sh """
-                    az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
-                    az acr login --name testiotacr
-                    docker push testiotacr.azurecr.io/iaq-agent:${TAG}
-                """
-            }
-        }
-    }
+    // stage('push images to ACR'){
+    //     withCredentials([azureServicePrincipal('azure-credentials')]) {
+    //         if (params.SERVICES == 'datalogger-agent') {
+    //             sh """
+    //                 az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
+    //                 az acr login --name testiotacr
+    //                 docker push testiotacr.azurecr.io/datalogger-agent:${TAG}
+    //             """
+    //         } else if (params.SERVICES == 'iaq-agent') {
+    //             sh """
+    //                 az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
+    //                 az acr login --name testiotacr
+    //                 docker push testiotacr.azurecr.io/iaq-agent:${TAG}
+    //             """
+    //         }
+    //     }
+    // }
     stage('pull image from acr'){
         sshagent(['ssh-credentials']) {
             withCredentials([azureServicePrincipal('azure-credentials')]){
