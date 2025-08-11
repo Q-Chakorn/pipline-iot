@@ -18,6 +18,7 @@ properties([
     ])
 ])
 node("macbook"){
+    currentBuild.description = "${params.SERVICES} \n Version : ${params.TAG}"
     checkout scm
     cleanWs()
     stage('gitclone'){
