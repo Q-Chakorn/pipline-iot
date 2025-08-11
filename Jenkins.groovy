@@ -95,6 +95,7 @@ node("macbook"){
                     fi
                 cd ${deployPath}
                 docker-compose -f 4.datalogger-agent.yaml down
+                docker-compose -f 3.iaq-agent.yaml down
                 '''
             """
         }
@@ -105,8 +106,14 @@ node("macbook"){
                 sh """
                     ssh -o StrictHostKeyChecking=no testdevops@20.6.33.223 '''
                     cd ${deployPath}
-                    ls -la
                     docker-compose -f 4.datalogger-agent.yaml up -d
+                    '''
+                """
+            }else if (params.SERVICES == 'iaq-agent') {
+                sh """
+                    ssh -o StrictHostKeyChecking=no testdevops@20.6.33.223 '''
+                    cd ${deployPath}
+                    docker-compose -f 3.iaq-agent.yaml up -d
                     '''
                 """
             }
