@@ -92,9 +92,6 @@ node("macbook"){
                         echo 'Directory testiot does not exist, cloning repository'
                         git clone https://github.com/Q-Chakorn/testiot.git
                     fi
-                cd ${deployPath}
-                docker-compose -f 4.datalogger-agent.yaml down
-                docker-compose -f 3.iaq-agent.yaml down
                 '''
             """
         }
@@ -105,6 +102,7 @@ node("macbook"){
                 sh """
                     ssh -o StrictHostKeyChecking=no testdevops@20.6.33.223 '''
                     cd ${deployPath}
+                    docker-compose -f 4.datalogger-agent.yaml down
                     docker-compose -f 4.datalogger-agent.yaml up -d
                     '''
                 """
@@ -112,6 +110,7 @@ node("macbook"){
                 sh """
                     ssh -o StrictHostKeyChecking=no testdevops@20.6.33.223 '''
                     cd ${deployPath}
+                    docker-compose -f 3.iaq-agent.yaml down
                     docker-compose -f 3.iaq-agent.yaml up -d
                     '''
                 """
