@@ -36,4 +36,25 @@ node("macbook"){
             """
         }
     }
+    // stage('push images to ACR'){
+
+    // }
+    // stage('deploy'){
+    //     sshagent(['ssh-credentials']) {
+    //         sh"""
+    //             ssh -o StrictHostKeyChecking=no testdevops@20.6.33.223 "echo 'Connected to remote server'"
+    //             ssh -o StrictHostKeyChecking=no testdevops@20.6.33.223 "
+    //                 if [ -d 'testiot' ]; then
+    //                     echo 'Directory testiot exists, pulling latest changes'
+    //                     cd testiot && git pull
+    //                 else
+    //                     echo 'Directory testiot does not exist, cloning repository'
+    //                     git clone https://github.com/Q-Chakorn/testiot.git
+    //                 fi
+    //             pwd
+    //             ls -la
+    //             "
+    //         """
+    //     }
+    // }
 }
