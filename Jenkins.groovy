@@ -9,7 +9,7 @@
 //     }
 // }
 
-node(macbook){
+node("macbook"){
     checkout scm
     cleanWs()
     stage('gitclone'){
