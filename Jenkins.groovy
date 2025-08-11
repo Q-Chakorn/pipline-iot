@@ -11,6 +11,7 @@
 properties([
     parameters([
         choice(name: 'SERVICES', choices: ['datalogger-agent', 'iaq-agent'], description: '')
+        string(name: 'TAG', defaultValue: '', description: 'Docker image tag')
     ])
 ])
 def datalogPath = "/Users/ikkyu/root/workspace/test/testiot/testiot/datalogger-agent"
@@ -29,16 +30,32 @@ node("macbook"){
         if (params.SERVICES == 'datalogger-agent') {
             sh """
                 cd ${datalogPath} && ls -la
+                docker build -t datalogger-agent:${TAG} .
+                docker tag datalogger-agent:${TAG} testiotacr/datalogger-agent:${TAG}
             """
         } else if (params.SERVICES == 'iaq-agent') {
             sh """
                 cd ${iaqPath} && ls -la
+                docker build -t iaq-agent:${TAG} .
+                docker tag iaq-agent:${TAG} testiotacr/iaq-agent:${TAG}
             """
         }
     }
-    // stage('push images to ACR'){
-
-    // }
+    stage('push images to ACR'){
+        withCredentials([azureServicePrincipal('azure-credentials')]) {
+            if (params.SERVICES == 'datalogger-agent') {
+                sh """
+                    az acr login --name testiotacr
+                    docker push testiotacr/datalogger-agent:${TAG}
+                """
+            } else if (params.SERVICES == 'iaq-agent') {
+                sh """
+                    az acr login --name testiotacr
+                    docker push testiotacr/iaq-agent:${TAG}
+                """
+            }
+        }
+    }
     // stage('deploy'){
     //     sshagent(['ssh-credentials']) {
     //         sh"""
