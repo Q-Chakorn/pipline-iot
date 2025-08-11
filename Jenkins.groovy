@@ -10,7 +10,7 @@
 // }
 properties([
     parameters([
-        choice(name: 'SERVICES', choices: ['datalogger-agent', 'iaq-agent'], description: '')
+        choice(name: 'SERVICES', choices: ['datalogger-agent', 'iaq-agent'], description: ''),
         string(name: 'TAG', defaultValue: '', description: 'Docker image tag')
     ])
 ])
