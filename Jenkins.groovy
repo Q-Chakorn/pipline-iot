@@ -36,7 +36,8 @@ node("macbook"){
         } else if (params.SERVICES == 'iaq-agent') {
             sh """
                 cd ${iaqPath} && ls -la
-                docker buildx build --platform linux/amd64,linux/arm64 -t testiotacr.azurecr.io/iaq-agent:${TAG} --push .
+                docker buildx build --platform linux/amd64,linux/arm64 -t iaq-agent:${TAG} .
+                docker tag iaq-agent:${TAG} testiotacr.azurecr.io/iaq-agent:${TAG}
             """
         }
     }
