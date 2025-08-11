@@ -31,13 +31,13 @@ node("macbook"){
         if (params.SERVICES == 'datalogger-agent') {
             sh """
                 cd ${datalogPath} && ls -la
-                docker buildx build --platform linux/amd64,linux/arm64 -t datalogger-agent:${TAG} .
+                docker buildx build --platform linux/amd64,linux/arm64 -t datalogger-agent:${TAG} --load .
                 docker tag datalogger-agent:${TAG} testiotacr.azurecr.io/datalogger-agent:${TAG}
             """
         } else if (params.SERVICES == 'iaq-agent') {
             sh """
                 cd ${iaqPath} && ls -la
-                docker buildx build --platform linux/amd64,linux/arm64 -t iaq-agent:${TAG} .
+                docker buildx build --platform linux/amd64,linux/arm64 -t iaq-agent:${TAG} --load .
                 docker tag iaq-agent:${TAG} testiotacr.azurecr.io/iaq-agent:${TAG}
             """
         }
