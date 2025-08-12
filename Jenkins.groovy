@@ -11,6 +11,13 @@
 def datalogPath = "/Users/ikkyu/root/workspace/test/testiot/testiot/datalogger-agent"
 def iaqPath = "/Users/ikkyu/root/workspace/test/testiot/testiot/iaq-agent"
 def deployPath = "/home/testdevops/testiot"
+properties([
+    parameters([
+        choice(name: 'SERVICES', choices: ['datalogger-agent', 'iaq-agent'], description: ''),
+        string(name: 'TAG', defaultValue: '', description: 'Docker image tag'),
+        booleanParam(name: 'ROLLBACK', defaultValue: false, description: 'Rollback to previous version')
+    ])
+])
 node("macbook"){
     currentBuild.description = "${params.SERVICES} \n Version : ${params.TAG} \n Rollback : ${params.ROLLBACK}"
     
