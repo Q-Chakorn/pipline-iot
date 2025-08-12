@@ -22,7 +22,7 @@ node("macbook"){
     if (params.ROLLBACK == true) {
         currentBuild.description = "${params.SERVICES} \n Version : ${params.TAG} \n Rollback : ${params.ROLLBACK}"
     }else{
-        currentBuild.description = "${params.SERVICES} \n Version : ${params.TAG}
+        currentBuild.description = "${params.SERVICES} \n Version : ${params.TAG}"
     }
 
     if (params.ROLLBACK) {
