@@ -19,8 +19,12 @@ properties([
     ])
 ])
 node("macbook"){
-    currentBuild.description = "${params.SERVICES} \n Version : ${params.TAG} \n Rollback : ${params.ROLLBACK}"
-    
+    if (params.ROLLBACK == true) {
+        currentBuild.description = "${params.SERVICES} \n Version : ${params.TAG} \n Rollback : ${params.ROLLBACK}"
+    }else{
+        currentBuild.description = "${params.SERVICES} \n Version : ${params.TAG}
+    }
+
     if (params.ROLLBACK) {
         stage('rollback') {
             sshagent(['ssh-credentials']) {
@@ -59,11 +63,15 @@ node("macbook"){
             if (params.SERVICES == 'datalogger-agent') {
                 sh """
                     cd ${datalogPath} && ls -la
+                    az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
+                    az acr login --name testiotacr
                     docker buildx build --platform linux/amd64,linux/arm64 -t testiotacr.azurecr.io/datalogger-agent:${TAG} --push .
                 """
             } else if (params.SERVICES == 'iaq-agent') {
                 sh """
                     cd ${iaqPath} && ls -la
+                    az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
+                    az acr login --name testiotacr
                     docker buildx build --platform linux/amd64,linux/arm64 -t testiotacr.azurecr.io/iaq-agent:${TAG} --push .
                 """
             }
