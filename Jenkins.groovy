@@ -35,9 +35,6 @@ node("macbook"){
                     docker-compose -f 4.datalogger-agent.yaml down
                     sed -i "s|image: testiotacr.azurecr.io/datalogger-agent:.*|image: testiotacr.azurecr.io/datalogger-agent:${TAG}|g" 4.datalogger-agent.yaml
                     docker-compose -f 4.datalogger-agent.yaml up -d
-                    docker exec datalogger-agent psql -U postgres -c "CREATE DATABASE hotel_iot;"
-                    docker exec datalogger-agent psql -U postgres -d hotel_iot -c "CREATE EXTENSION IF NOT EXISTS timescaledb;"
-                    docker exec datalogger-agent psql -U postgres -d hotel_iot < /home/testdevops/testiot/datalogger-agent/schema.sql
                     '''
                 """
             } else if (params.SERVICES == 'iaq-agent') {
@@ -144,9 +141,6 @@ node("macbook"){
                         cd ${deployPath}
                         docker-compose -f 4.datalogger-agent.yaml down
                         docker-compose -f 4.datalogger-agent.yaml up -d
-                        docker exec -it datalogger-agent psql -U postgres -c "CREATE DATABASE hotel_iot;"
-                        docker exec -it datalogger-agent psql -U postgres -d hotel_iot -c "CREATE EXTENSION IF NOT EXISTS timescaledb;"
-                        docker exec -it datalogger-agent psql -U postgres -d hotel_iot < /home/testdevops/testiot/datalogger-agent/schema.sql
                         '''
                     """
                 }else if (params.SERVICES == 'iaq-agent') {
@@ -162,3 +156,6 @@ node("macbook"){
         }
     }
 }
+// docker exec -it datalogger-agent psql -U postgres -c "CREATE DATABASE hotel_iot;"
+// docker exec -it datalogger-agent psql -U postgres -d hotel_iot -c "CREATE EXTENSION IF NOT EXISTS timescaledb;"
+// docker exec -it datalogger-agent psql -U postgres -d hotel_iot < /home/testdevops/testiot/datalogger-agent/schema.sql
