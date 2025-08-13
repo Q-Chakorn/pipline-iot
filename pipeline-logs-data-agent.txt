@@ -1,0 +1,412 @@
+Started by user CP
+Obtained Jenkins.groovy from git https://github.com/Q-Chakorn/pipline-iot.git
+[Pipeline] Start of Pipeline
+[Pipeline] properties
+[Pipeline] node
+Running on macbook in /Users/ikkyu/root/workspace/test/iot-build-deploy
+[Pipeline] {
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+Cloning the remote Git repository
+Cloning repository https://github.com/Q-Chakorn/pipline-iot.git
+ > git init /Users/ikkyu/root/workspace/test/iot-build-deploy # timeout=10
+Fetching upstream changes from https://github.com/Q-Chakorn/pipline-iot.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.1'
+ > git fetch --tags --force --progress -- https://github.com/Q-Chakorn/pipline-iot.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+Checking out Revision 11d1aeaaae73837b673c41e60dc7458340a53d3c (refs/remotes/origin/master)
+Commit message: "Update README.md"
+ > git config remote.origin.url https://github.com/Q-Chakorn/pipline-iot.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 11d1aeaaae73837b673c41e60dc7458340a53d3c # timeout=10
+ > git rev-list --no-walk 11d1aeaaae73837b673c41e60dc7458340a53d3c # timeout=10
+[Pipeline] cleanWs
+[WS-CLEANUP] Deleting project workspace...
+[WS-CLEANUP] Deferred wipeout is used...
+[WS-CLEANUP] done
+[Pipeline] stage
+[Pipeline] { (gitclone)
+[Pipeline] sh
++ git clone https://github.com/Q-Chakorn/testiot.git
+Cloning into 'testiot'...
++ cd /Users/ikkyu/root/workspace/test/testiot/testiot/datalogger-agent
++ ls -la
+total 384
+drwxr-xr-x@ 25 ikkyu  staff    800 Aug 11 23:49 .
+drwxr-xr-x@  9 ikkyu  staff    288 Aug 11 23:49 ..
+-rw-r--r--@  1 ikkyu  staff    789 Aug 11 23:49 .dockerignore
+-rw-r--r--@  1 ikkyu  staff    554 Aug 11 23:49 .env
+-rw-r--r--@  1 ikkyu  staff    693 Aug 11 23:49 .env.example
+-rw-r--r--@  1 ikkyu  staff   1017 Aug 11 23:49 .env.prod.example
+-rw-r--r--@  1 ikkyu  staff   2274 Aug 11 23:49 Dockerfile
+-rw-r--r--@  1 ikkyu  staff   2363 Aug 11 23:49 Dockerfile.backup
+drwxr-xr-x@  3 ikkyu  staff     96 Aug 11 23:49 data
+-rw-r--r--@  1 ikkyu  staff  16480 Aug 11 23:49 data_logger.py
+-rw-r--r--@  1 ikkyu  staff  20109 Aug 11 23:49 data_validator.py
+-rw-r--r--@  1 ikkyu  staff  15276 Aug 11 23:49 database.py
+-rw-r--r--@  1 ikkyu  staff  15109 Aug 11 23:49 db_health_check.py
+-rw-r--r--@  1 ikkyu  staff   3138 Aug 11 23:49 docker-compose.health-check.yml
+-rw-r--r--@  1 ikkyu  staff   2929 Aug 11 23:49 docker-compose.yml
+-rw-r--r--@  1 ikkyu  staff   5746 Aug 11 23:49 docker-init-db.sh
+-rw-r--r--@  1 ikkyu  staff   7963 Aug 11 23:49 example_health_check.py
+-rw-r--r--@  1 ikkyu  staff  11113 Aug 11 23:49 init_db.sql
+drwxr-xr-x@  3 ikkyu  staff     96 Aug 11 23:49 logs
+-rw-r--r--@  1 ikkyu  staff  17035 Aug 11 23:49 main.py
+-rw-r--r--@  1 ikkyu  staff   9819 Aug 11 23:49 migrate.py
+drwxr-xr-x@  7 ikkyu  staff    224 Aug 11 23:49 migrations
+-rw-r--r--@  1 ikkyu  staff  16288 Aug 11 23:49 rabbitmq_consumer.py
+-rw-r--r--@  1 ikkyu  staff    131 Aug 11 23:49 requirements.txt
+-rw-r--r--@  1 ikkyu  staff   4331 Aug 11 23:49 schema.sql
++ cd /Users/ikkyu/root/workspace/test/testiot/testiot/iaq-agent
++ ls -la
+total 320
+drwxr-xr-x@ 17 ikkyu  staff    544 Aug 11 23:49 .
+drwxr-xr-x@  9 ikkyu  staff    288 Aug 11 23:49 ..
+-rw-r--r--@  1 ikkyu  staff    762 Aug 11 23:49 .dockerignore
+-rw-r--r--@  1 ikkyu  staff   1047 Aug 11 23:49 .env.docker
+-rw-r--r--@  1 ikkyu  staff    966 Aug 11 23:49 .env.example
+-rw-r--r--@  1 ikkyu  staff   2182 Aug 11 23:49 Dockerfile
+-rw-r--r--@  1 ikkyu  staff   2271 Aug 11 23:49 Dockerfile.backup
+-rw-r--r--@  1 ikkyu  staff   8301 Aug 11 23:49 build.sh
+-rw-r--r--@  1 ikkyu  staff  12397 Aug 11 23:49 csv_reader.py
+-rw-r--r--@  1 ikkyu  staff   4099 Aug 11 23:49 docker-compose.yml
+-rw-r--r--@  1 ikkyu  staff  16611 Aug 11 23:49 example_scheduler_usage.py
+-rw-r--r--@  1 ikkyu  staff   8401 Aug 11 23:49 main.py
+-rw-r--r--@  1 ikkyu  staff   5402 Aug 11 23:49 models.py
+-rw-r--r--@  1 ikkyu  staff  13100 Aug 11 23:49 multi_csv_reader.py
+-rw-r--r--@  1 ikkyu  staff  14139 Aug 11 23:49 rabbitmq_client.py
+-rw-r--r--@  1 ikkyu  staff     97 Aug 11 23:49 requirements.txt
+-rw-r--r--@  1 ikkyu  staff  26987 Aug 11 23:49 scheduler.py
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (build images and push to acr)
+[Pipeline] withCredentials
+Masking supported pattern matches of $AZURE_SUBSCRIPTION_ID or $AZURE_TENANT_ID or $AZURE_CLIENT_SECRET or $AZURE_CLIENT_ID
+[Pipeline] {
+[Pipeline] sh
+Warning: A secret was passed to "sh" using Groovy String interpolation, which is insecure.
+		 Affected argument(s) used the following variable(s): [AZURE_TENANT_ID, AZURE_CLIENT_SECRET, AZURE_CLIENT_ID]
+		 See https://jenkins.io/redirect/groovy-string-interpolation for details.
++ cd /Users/ikkyu/root/workspace/test/testiot/testiot/datalogger-agent
++ ls -la
+total 384
+drwxr-xr-x@ 25 ikkyu  staff    800 Aug 11 23:49 .
+drwxr-xr-x@  9 ikkyu  staff    288 Aug 11 23:49 ..
+-rw-r--r--@  1 ikkyu  staff    789 Aug 11 23:49 .dockerignore
+-rw-r--r--@  1 ikkyu  staff    554 Aug 11 23:49 .env
+-rw-r--r--@  1 ikkyu  staff    693 Aug 11 23:49 .env.example
+-rw-r--r--@  1 ikkyu  staff   1017 Aug 11 23:49 .env.prod.example
+-rw-r--r--@  1 ikkyu  staff   2274 Aug 11 23:49 Dockerfile
+-rw-r--r--@  1 ikkyu  staff   2363 Aug 11 23:49 Dockerfile.backup
+drwxr-xr-x@  3 ikkyu  staff     96 Aug 11 23:49 data
+-rw-r--r--@  1 ikkyu  staff  16480 Aug 11 23:49 data_logger.py
+-rw-r--r--@  1 ikkyu  staff  20109 Aug 11 23:49 data_validator.py
+-rw-r--r--@  1 ikkyu  staff  15276 Aug 11 23:49 database.py
+-rw-r--r--@  1 ikkyu  staff  15109 Aug 11 23:49 db_health_check.py
+-rw-r--r--@  1 ikkyu  staff   3138 Aug 11 23:49 docker-compose.health-check.yml
+-rw-r--r--@  1 ikkyu  staff   2929 Aug 11 23:49 docker-compose.yml
+-rw-r--r--@  1 ikkyu  staff   5746 Aug 11 23:49 docker-init-db.sh
+-rw-r--r--@  1 ikkyu  staff   7963 Aug 11 23:49 example_health_check.py
+-rw-r--r--@  1 ikkyu  staff  11113 Aug 11 23:49 init_db.sql
+drwxr-xr-x@  3 ikkyu  staff     96 Aug 11 23:49 logs
+-rw-r--r--@  1 ikkyu  staff  17035 Aug 11 23:49 main.py
+-rw-r--r--@  1 ikkyu  staff   9819 Aug 11 23:49 migrate.py
+drwxr-xr-x@  7 ikkyu  staff    224 Aug 11 23:49 migrations
+-rw-r--r--@  1 ikkyu  staff  16288 Aug 11 23:49 rabbitmq_consumer.py
+-rw-r--r--@  1 ikkyu  staff    131 Aug 11 23:49 requirements.txt
+-rw-r--r--@  1 ikkyu  staff   4331 Aug 11 23:49 schema.sql
++ az login --service-principal -u **** -p **** --tenant ****
+[
+  {
+    "cloudName": "AzureCloud",
+    "homeTenantId": "****",
+    "id": "****",
+    "isDefault": true,
+    "managedByTenants": [],
+    "name": "Azure devops-subscription",
+    "state": "Enabled",
+    "tenantId": "****",
+    "user": {
+      "name": "****",
+      "type": "servicePrincipal"
+    }
+  }
+]
++ az acr login --name testiotacr
+Login Succeeded
++ docker buildx build --platform linux/amd64,linux/arm64 -t testiotacr.azurecr.io/datalogger-agent:v1 --push .
+#0 building with "modest_lumiere" instance using docker-container driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.31kB done
+#1 WARN: FromAsCasing: 'as' and 'FROM' keywords' casing do not match (line 5)
+#1 WARN: FromAsCasing: 'as' and 'FROM' keywords' casing do not match (line 39)
+#1 DONE 0.0s
+
+#2 [auth] library/python:pull token for registry-1.docker.io
+#2 DONE 0.0s
+
+#3 [linux/arm64 internal] load metadata for docker.io/library/python:3.11-slim
+#3 DONE 1.9s
+
+#4 [linux/amd64 internal] load metadata for docker.io/library/python:3.11-slim
+#4 ...
+
+#5 [internal] load .dockerignore
+#5 transferring context: 831B done
+#5 DONE 0.0s
+
+#4 [linux/amd64 internal] load metadata for docker.io/library/python:3.11-slim
+#4 DONE 2.9s
+
+#6 [linux/amd64 builder 1/5] FROM docker.io/library/python:3.11-slim@sha256:539abdd47f4bf0ef07d17bd79b41d2bcd98866485b868cac911d486df8d68132
+#6 resolve docker.io/library/python:3.11-slim@sha256:539abdd47f4bf0ef07d17bd79b41d2bcd98866485b868cac911d486df8d68132 done
+#6 DONE 0.0s
+
+#7 [linux/arm64 builder 1/5] FROM docker.io/library/python:3.11-slim@sha256:539abdd47f4bf0ef07d17bd79b41d2bcd98866485b868cac911d486df8d68132
+#7 resolve docker.io/library/python:3.11-slim@sha256:539abdd47f4bf0ef07d17bd79b41d2bcd98866485b868cac911d486df8d68132 done
+#7 DONE 0.0s
+
+#8 [internal] load build context
+#8 transferring context: 865B done
+#8 DONE 0.0s
+
+#9 [linux/amd64 production 3/8] RUN groupadd -r datalogger && useradd -r -g datalogger -u 1000 datalogger
+#9 CACHED
+
+#10 [linux/amd64 builder 2/5] RUN apt-get update && apt-get install -y --no-install-recommends     build-essential     gcc     libpq-dev     && rm -rf /var/lib/apt/lists/*
+#10 CACHED
+
+#11 [linux/amd64 production 6/8] COPY --from=builder /usr/local/bin /usr/local/bin
+#11 CACHED
+
+#12 [linux/amd64 builder 3/5] WORKDIR /app
+#12 CACHED
+
+#13 [linux/amd64 builder 5/5] RUN pip install --no-cache-dir --upgrade pip setuptools wheel &&     pip install --no-cache-dir -r requirements.txt
+#13 CACHED
+
+#14 [linux/amd64 production 2/8] RUN apt-get update && apt-get install -y --no-install-recommends     libpq5     curl     && rm -rf /var/lib/apt/lists/*     && apt-get clean
+#14 CACHED
+
+#15 [linux/amd64 production 4/8] WORKDIR /app
+#15 CACHED
+
+#16 [linux/amd64 production 7/8] COPY --chown=datalogger:datalogger . .
+#16 CACHED
+
+#17 [linux/amd64 builder 4/5] COPY requirements.txt .
+#17 CACHED
+
+#18 [linux/amd64 production 5/8] COPY --from=builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
+#18 CACHED
+
+#19 [linux/amd64 production 8/8] RUN mkdir -p /app/logs /app/data &&     chown -R datalogger:datalogger /app
+#19 CACHED
+
+#20 [linux/arm64 builder 2/5] RUN apt-get update && apt-get install -y --no-install-recommends     build-essential     gcc     libpq-dev     && rm -rf /var/lib/apt/lists/*
+#20 CACHED
+
+#21 [linux/arm64 production 7/8] COPY --chown=datalogger:datalogger . .
+#21 CACHED
+
+#22 [linux/arm64 builder 3/5] WORKDIR /app
+#22 CACHED
+
+#23 [linux/arm64 production 6/8] COPY --from=builder /usr/local/bin /usr/local/bin
+#23 CACHED
+
+#24 [linux/arm64 production 3/8] RUN groupadd -r datalogger && useradd -r -g datalogger -u 1000 datalogger
+#24 CACHED
+
+#25 [linux/arm64 builder 4/5] COPY requirements.txt .
+#25 CACHED
+
+#26 [linux/arm64 production 4/8] WORKDIR /app
+#26 CACHED
+
+#27 [linux/arm64 production 5/8] COPY --from=builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
+#27 CACHED
+
+#28 [linux/arm64 builder 5/5] RUN pip install --no-cache-dir --upgrade pip setuptools wheel &&     pip install --no-cache-dir -r requirements.txt
+#28 CACHED
+
+#29 [linux/arm64 production 2/8] RUN apt-get update && apt-get install -y --no-install-recommends     libpq5     curl     && rm -rf /var/lib/apt/lists/*     && apt-get clean
+#29 CACHED
+
+#30 [linux/arm64 production 8/8] RUN mkdir -p /app/logs /app/data &&     chown -R datalogger:datalogger /app
+#30 CACHED
+
+#31 exporting to image
+#31 exporting layers done
+#31 exporting manifest sha256:f5f4cd5c4ca655b1ec21c507930e820aaba48d4f3ff2e6c5cbc60b8f4eb03e8a done
+#31 exporting config sha256:573a6d83434a6d027ae31f16caea4f66d921ea8cd051d1866362bd5dddea0c6f done
+#31 exporting attestation manifest sha256:815ec1758297c57ee2a261b20a53e57f5d5f215539aa73d9de7f9073ef64db92 0.0s done
+#31 exporting manifest sha256:3488945f8aab00f2a09c9abdc847d0a9b9e24935b0b4e70208bfd210e1f99d75 done
+#31 exporting config sha256:c5d2d9ad0e2d285b5bc1afb0dba83bdccb003d6428a105965a837b16fa4efa48 done
+#31 exporting attestation manifest sha256:06de37962ad3eb84baa789599e7bb1ed39317cad40883cb799548d8e748816db 0.0s done
+#31 exporting manifest list sha256:aa84bee7d27cc9a7f9cc8912ae7054393572054890a41acc4cde92ff29c4df72 done
+#31 pushing layers
+#31 ...
+
+#32 [auth] datalogger-agent:pull,push token for testiotacr.azurecr.io
+#32 DONE 0.0s
+
+#31 exporting to image
+#31 ...
+
+#33 [auth] datalogger-agent:pull,push iaq-agent:pull token for testiotacr.azurecr.io
+#33 DONE 0.0s
+
+#31 exporting to image
+#31 pushing layers 17.3s done
+#31 pushing manifest for testiotacr.azurecr.io/datalogger-agent:v1@sha256:aa84bee7d27cc9a7f9cc8912ae7054393572054890a41acc4cde92ff29c4df72
+#31 pushing manifest for testiotacr.azurecr.io/datalogger-agent:v1@sha256:aa84bee7d27cc9a7f9cc8912ae7054393572054890a41acc4cde92ff29c4df72 1.6s done
+#31 DONE 19.0s
+
+ [33m2 warnings found (use docker --debug to expand):
+[0m - FromAsCasing: 'as' and 'FROM' keywords' casing do not match (line 5)
+ - FromAsCasing: 'as' and 'FROM' keywords' casing do not match (line 39)
+
+View build details: docker-desktop://dashboard/build/modest_lumiere/modest_lumiere0/sd0gafub7nw3y1z8gy7myvftc
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (pull image from acr)
+[Pipeline] sshagent
+[ssh-agent] Using credentials testdevops (test ssh)
+$ ssh-agent
+SSH_AUTH_SOCK=/var/folders/h2/blfw6g7j0jl7vjwvt2zqcf2w0000gn/T//ssh-IBteefFNH877/agent.55258
+SSH_AGENT_PID=55259
+Running ssh-add (command line suppressed)
+Identity added: /Users/ikkyu/root/workspace/test/iot-build-deploy@tmp/private_key_16795572600583088612.key (ikkyu@chakorns-MacBook-Air.local)
+[ssh-agent] Started.
+[Pipeline] {
+[Pipeline] withCredentials
+Masking supported pattern matches of $AZURE_SUBSCRIPTION_ID or $AZURE_TENANT_ID or $AZURE_CLIENT_SECRET or $AZURE_CLIENT_ID
+[Pipeline] {
+[Pipeline] sh
+Warning: A secret was passed to "sh" using Groovy String interpolation, which is insecure.
+		 Affected argument(s) used the following variable(s): [AZURE_TENANT_ID, AZURE_CLIENT_SECRET, AZURE_CLIENT_ID]
+		 See https://jenkins.io/redirect/groovy-string-interpolation for details.
++ ssh -o StrictHostKeyChecking=no testdevops@20.6.33.223 '
+                            az login --service-principal -u **** -p **** --tenant ****
+                            az acr login --name testiotacr
+                            docker pull testiotacr.azurecr.io/datalogger-agent:v1
+                            '
+[
+  {
+    "cloudName": "AzureCloud",
+    "homeTenantId": "****",
+    "id": "****",
+    "isDefault": true,
+    "managedByTenants": [],
+    "name": "Azure devops-subscription",
+    "state": "Enabled",
+    "tenantId": "****",
+    "user": {
+      "name": "****",
+      "type": "servicePrincipal"
+    }
+  }
+]
+Login Succeeded
+v1: Pulling from datalogger-agent
+Digest: sha256:aa84bee7d27cc9a7f9cc8912ae7054393572054890a41acc4cde92ff29c4df72
+Status: Image is up to date for testiotacr.azurecr.io/datalogger-agent:v1
+testiotacr.azurecr.io/datalogger-agent:v1
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+$ ssh-agent -k
+unset SSH_AUTH_SOCK;
+unset SSH_AGENT_PID;
+echo Agent pid 55259 killed;
+[ssh-agent] Stopped.
+[Pipeline] // sshagent
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (prepare)
+[Pipeline] sshagent
+[ssh-agent] Using credentials testdevops (test ssh)
+$ ssh-agent
+SSH_AUTH_SOCK=/var/folders/h2/blfw6g7j0jl7vjwvt2zqcf2w0000gn/T//ssh-j1TxN3cR1NGL/agent.55284
+SSH_AGENT_PID=55285
+Running ssh-add (command line suppressed)
+Identity added: /Users/ikkyu/root/workspace/test/iot-build-deploy@tmp/private_key_7350925921073383003.key (ikkyu@chakorns-MacBook-Air.local)
+[ssh-agent] Started.
+[Pipeline] {
+[Pipeline] sh
++ ssh -o StrictHostKeyChecking=no testdevops@20.6.33.223 '
+                        if [ -d testiot ]; then
+                            echo Directory' testiot exists, pulling latest 'changes
+                            cd testiot && git pull
+                        else
+                            echo Directory' testiot does not exist, cloning 'repository
+                            git clone https://github.com/Q-Chakorn/testiot.git
+                        fi
+                    '
+Directory testiot exists, pulling latest changes
+From https://github.com/Q-Chakorn/testiot
+   617b7ba..da805d1  master     -> origin/master
+Updating 617b7ba..da805d1
+Fast-forward
+ datalogger-agent/Dockerfile | 38 +++++++++++++++++++++++++++-----------
+ 1 file changed, 27 insertions(+), 11 deletions(-)
+[Pipeline] }
+$ ssh-agent -k
+unset SSH_AUTH_SOCK;
+unset SSH_AGENT_PID;
+echo Agent pid 55285 killed;
+[ssh-agent] Stopped.
+[Pipeline] // sshagent
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (deploy)
+[Pipeline] sshagent
+[ssh-agent] Using credentials testdevops (test ssh)
+$ ssh-agent
+SSH_AUTH_SOCK=/var/folders/h2/blfw6g7j0jl7vjwvt2zqcf2w0000gn/T//ssh-0rG6KgcPRadk/agent.55297
+SSH_AGENT_PID=55298
+Running ssh-add (command line suppressed)
+Identity added: /Users/ikkyu/root/workspace/test/iot-build-deploy@tmp/private_key_4951848069212312717.key (ikkyu@chakorns-MacBook-Air.local)
+[ssh-agent] Started.
+[Pipeline] {
+[Pipeline] sh
++ ssh -o StrictHostKeyChecking=no testdevops@20.6.33.223 '
+                        cd /home/testdevops/testiot
+                        docker-compose -f 4.datalogger-agent.yaml down
+                        docker-compose -f 4.datalogger-agent.yaml up -d
+                        '
+Stopping datalogger-agent ... 
+Stopping datalogger-agent ... done
+Found orphan containers (iaq-sensor-agent) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up.
+Removing datalogger-agent ... 
+Removing datalogger-agent ... done
+Network iot-shared-network is external, skipping
+Found orphan containers (iaq-sensor-agent) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up.
+Creating datalogger-agent ... 
+Creating datalogger-agent ... done
+[Pipeline] }
+$ ssh-agent -k
+unset SSH_AUTH_SOCK;
+unset SSH_AGENT_PID;
+echo Agent pid 55298 killed;
+[ssh-agent] Stopped.
+[Pipeline] // sshagent
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

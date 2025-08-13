@@ -1,0 +1,47 @@
+Started by user CP
+Obtained Jenkins.groovy from git https://github.com/Q-Chakorn/pipline-iot.git
+[Pipeline] Start of Pipeline
+[Pipeline] properties
+[Pipeline] node
+Running on macbook in /Users/ikkyu/root/workspace/test/iot-build-deploy
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (rollback)
+[Pipeline] sshagent
+[ssh-agent] Using credentials testdevops (test ssh)
+$ ssh-agent
+SSH_AUTH_SOCK=/var/folders/h2/blfw6g7j0jl7vjwvt2zqcf2w0000gn/T//ssh-ND5EwA5YenOS/agent.55371
+SSH_AGENT_PID=55372
+Running ssh-add (command line suppressed)
+Identity added: /Users/ikkyu/root/workspace/test/iot-build-deploy@tmp/private_key_1193952420365881851.key (ikkyu@chakorns-MacBook-Air.local)
+[ssh-agent] Started.
+[Pipeline] {
+[Pipeline] sh
++ ssh -o StrictHostKeyChecking=no testdevops@20.6.33.223 '
+                    cd /home/testdevops/testiot
+                    docker-compose -f 4.datalogger-agent.yaml down
+                    sed -i "s|image: testiotacr.azurecr.io/datalogger-agent:.*|image: testiotacr.azurecr.io/datalogger-agent:v1|g" 4.datalogger-agent.yaml
+                    docker-compose -f 4.datalogger-agent.yaml up -d
+                    '
+Stopping datalogger-agent ... 
+Stopping datalogger-agent ... done
+Found orphan containers (iaq-sensor-agent) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up.
+Removing datalogger-agent ... 
+Removing datalogger-agent ... done
+Network iot-shared-network is external, skipping
+Found orphan containers (iaq-sensor-agent) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up.
+Creating datalogger-agent ... 
+Creating datalogger-agent ... done
+[Pipeline] }
+$ ssh-agent -k
+unset SSH_AUTH_SOCK;
+unset SSH_AGENT_PID;
+echo Agent pid 55372 killed;
+[ssh-agent] Stopped.
+[Pipeline] // sshagent
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

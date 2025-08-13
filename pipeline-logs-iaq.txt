@@ -1,0 +1,1459 @@
+Started by user CP
+Obtained Jenkins.groovy from git https://github.com/Q-Chakorn/pipline-iot.git
+[Pipeline] Start of Pipeline
+[Pipeline] properties
+[Pipeline] node
+Running on macbook in /Users/ikkyu/root/workspace/test/iot-build-deploy
+[Pipeline] {
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+Cloning the remote Git repository
+Cloning repository https://github.com/Q-Chakorn/pipline-iot.git
+ > git init /Users/ikkyu/root/workspace/test/iot-build-deploy # timeout=10
+Fetching upstream changes from https://github.com/Q-Chakorn/pipline-iot.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.1'
+ > git fetch --tags --force --progress -- https://github.com/Q-Chakorn/pipline-iot.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+Checking out Revision 11d1aeaaae73837b673c41e60dc7458340a53d3c (refs/remotes/origin/master)
+Commit message: "Update README.md"
+ > git config remote.origin.url https://github.com/Q-Chakorn/pipline-iot.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 11d1aeaaae73837b673c41e60dc7458340a53d3c # timeout=10
+ > git rev-list --no-walk 11d1aeaaae73837b673c41e60dc7458340a53d3c # timeout=10
+[Pipeline] cleanWs
+[WS-CLEANUP] Deleting project workspace...
+[WS-CLEANUP] Deferred wipeout is used...
+[WS-CLEANUP] done
+[Pipeline] stage
+[Pipeline] { (gitclone)
+[Pipeline] sh
++ git clone https://github.com/Q-Chakorn/testiot.git
+Cloning into 'testiot'...
++ cd /Users/ikkyu/root/workspace/test/testiot/testiot/datalogger-agent
++ ls -la
+total 384
+drwxr-xr-x@ 25 ikkyu  staff    800 Aug 11 23:49 .
+drwxr-xr-x@  9 ikkyu  staff    288 Aug 11 23:49 ..
+-rw-r--r--@  1 ikkyu  staff    789 Aug 11 23:49 .dockerignore
+-rw-r--r--@  1 ikkyu  staff    554 Aug 11 23:49 .env
+-rw-r--r--@  1 ikkyu  staff    693 Aug 11 23:49 .env.example
+-rw-r--r--@  1 ikkyu  staff   1017 Aug 11 23:49 .env.prod.example
+-rw-r--r--@  1 ikkyu  staff   2274 Aug 11 23:49 Dockerfile
+-rw-r--r--@  1 ikkyu  staff   2363 Aug 11 23:49 Dockerfile.backup
+drwxr-xr-x@  3 ikkyu  staff     96 Aug 11 23:49 data
+-rw-r--r--@  1 ikkyu  staff  16480 Aug 11 23:49 data_logger.py
+-rw-r--r--@  1 ikkyu  staff  20109 Aug 11 23:49 data_validator.py
+-rw-r--r--@  1 ikkyu  staff  15276 Aug 11 23:49 database.py
+-rw-r--r--@  1 ikkyu  staff  15109 Aug 11 23:49 db_health_check.py
+-rw-r--r--@  1 ikkyu  staff   3138 Aug 11 23:49 docker-compose.health-check.yml
+-rw-r--r--@  1 ikkyu  staff   2929 Aug 11 23:49 docker-compose.yml
+-rw-r--r--@  1 ikkyu  staff   5746 Aug 11 23:49 docker-init-db.sh
+-rw-r--r--@  1 ikkyu  staff   7963 Aug 11 23:49 example_health_check.py
+-rw-r--r--@  1 ikkyu  staff  11113 Aug 11 23:49 init_db.sql
+drwxr-xr-x@  3 ikkyu  staff     96 Aug 11 23:49 logs
+-rw-r--r--@  1 ikkyu  staff  17035 Aug 11 23:49 main.py
+-rw-r--r--@  1 ikkyu  staff   9819 Aug 11 23:49 migrate.py
+drwxr-xr-x@  7 ikkyu  staff    224 Aug 11 23:49 migrations
+-rw-r--r--@  1 ikkyu  staff  16288 Aug 11 23:49 rabbitmq_consumer.py
+-rw-r--r--@  1 ikkyu  staff    131 Aug 11 23:49 requirements.txt
+-rw-r--r--@  1 ikkyu  staff   4331 Aug 11 23:49 schema.sql
++ cd /Users/ikkyu/root/workspace/test/testiot/testiot/iaq-agent
++ ls -la
+total 320
+drwxr-xr-x@ 17 ikkyu  staff    544 Aug 11 23:49 .
+drwxr-xr-x@  9 ikkyu  staff    288 Aug 11 23:49 ..
+-rw-r--r--@  1 ikkyu  staff    762 Aug 11 23:49 .dockerignore
+-rw-r--r--@  1 ikkyu  staff   1047 Aug 11 23:49 .env.docker
+-rw-r--r--@  1 ikkyu  staff    966 Aug 11 23:49 .env.example
+-rw-r--r--@  1 ikkyu  staff   2182 Aug 11 23:49 Dockerfile
+-rw-r--r--@  1 ikkyu  staff   2271 Aug 11 23:49 Dockerfile.backup
+-rw-r--r--@  1 ikkyu  staff   8301 Aug 11 23:49 build.sh
+-rw-r--r--@  1 ikkyu  staff  12397 Aug 11 23:49 csv_reader.py
+-rw-r--r--@  1 ikkyu  staff   4099 Aug 11 23:49 docker-compose.yml
+-rw-r--r--@  1 ikkyu  staff  16611 Aug 11 23:49 example_scheduler_usage.py
+-rw-r--r--@  1 ikkyu  staff   8401 Aug 11 23:49 main.py
+-rw-r--r--@  1 ikkyu  staff   5402 Aug 11 23:49 models.py
+-rw-r--r--@  1 ikkyu  staff  13100 Aug 11 23:49 multi_csv_reader.py
+-rw-r--r--@  1 ikkyu  staff  14139 Aug 11 23:49 rabbitmq_client.py
+-rw-r--r--@  1 ikkyu  staff     97 Aug 11 23:49 requirements.txt
+-rw-r--r--@  1 ikkyu  staff  26987 Aug 11 23:49 scheduler.py
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (build images and push to acr)
+[Pipeline] withCredentials
+Masking supported pattern matches of $AZURE_SUBSCRIPTION_ID or $AZURE_TENANT_ID or $AZURE_CLIENT_SECRET or $AZURE_CLIENT_ID
+[Pipeline] {
+[Pipeline] sh
+Warning: A secret was passed to "sh" using Groovy String interpolation, which is insecure.
+		 Affected argument(s) used the following variable(s): [AZURE_TENANT_ID, AZURE_CLIENT_SECRET, AZURE_CLIENT_ID]
+		 See https://jenkins.io/redirect/groovy-string-interpolation for details.
++ cd /Users/ikkyu/root/workspace/test/testiot/testiot/iaq-agent
++ ls -la
+total 320
+drwxr-xr-x@ 17 ikkyu  staff    544 Aug 11 23:49 .
+drwxr-xr-x@  9 ikkyu  staff    288 Aug 11 23:49 ..
+-rw-r--r--@  1 ikkyu  staff    762 Aug 11 23:49 .dockerignore
+-rw-r--r--@  1 ikkyu  staff   1047 Aug 11 23:49 .env.docker
+-rw-r--r--@  1 ikkyu  staff    966 Aug 11 23:49 .env.example
+-rw-r--r--@  1 ikkyu  staff   2182 Aug 11 23:49 Dockerfile
+-rw-r--r--@  1 ikkyu  staff   2271 Aug 11 23:49 Dockerfile.backup
+-rw-r--r--@  1 ikkyu  staff   8301 Aug 11 23:49 build.sh
+-rw-r--r--@  1 ikkyu  staff  12397 Aug 11 23:49 csv_reader.py
+-rw-r--r--@  1 ikkyu  staff   4099 Aug 11 23:49 docker-compose.yml
+-rw-r--r--@  1 ikkyu  staff  16611 Aug 11 23:49 example_scheduler_usage.py
+-rw-r--r--@  1 ikkyu  staff   8401 Aug 11 23:49 main.py
+-rw-r--r--@  1 ikkyu  staff   5402 Aug 11 23:49 models.py
+-rw-r--r--@  1 ikkyu  staff  13100 Aug 11 23:49 multi_csv_reader.py
+-rw-r--r--@  1 ikkyu  staff  14139 Aug 11 23:49 rabbitmq_client.py
+-rw-r--r--@  1 ikkyu  staff     97 Aug 11 23:49 requirements.txt
+-rw-r--r--@  1 ikkyu  staff  26987 Aug 11 23:49 scheduler.py
++ az login --service-principal -u **** -p **** --tenant ****
+[
+  {
+    "cloudName": "AzureCloud",
+    "homeTenantId": "****",
+    "id": "****",
+    "isDefault": true,
+    "managedByTenants": [],
+    "name": "Azure devops-subscription",
+    "state": "Enabled",
+    "tenantId": "****",
+    "user": {
+      "name": "****",
+      "type": "servicePrincipal"
+    }
+  }
+]
++ az acr login --name testiotacr
+Login Succeeded
++ docker buildx build --platform linux/amd64,linux/arm64 -t testiotacr.azurecr.io/iaq-agent:v1 --push .
+#0 building with "modest_lumiere" instance using docker-container driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.22kB done
+#1 WARN: FromAsCasing: 'as' and 'FROM' keywords' casing do not match (line 5)
+#1 WARN: FromAsCasing: 'as' and 'FROM' keywords' casing do not match (line 38)
+#1 DONE 0.0s
+
+#2 [linux/arm64 internal] load metadata for docker.io/library/python:3.9-slim
+#2 DONE 1.2s
+
+#3 [linux/amd64 internal] load metadata for docker.io/library/python:3.9-slim
+#3 ...
+
+#4 [internal] load .dockerignore
+#4 transferring context: 804B done
+#4 DONE 0.0s
+
+#3 [linux/amd64 internal] load metadata for docker.io/library/python:3.9-slim
+#3 DONE 2.3s
+
+#5 [internal] load build context
+#5 transferring context: 295B done
+#5 DONE 0.0s
+
+#6 [linux/arm64 builder 1/5] FROM docker.io/library/python:3.9-slim@sha256:9d3f1231667e0532961c3dc310e88e8554fef00f092045e81dc9bccf435aca7e
+#6 resolve docker.io/library/python:3.9-slim@sha256:9d3f1231667e0532961c3dc310e88e8554fef00f092045e81dc9bccf435aca7e done
+#6 CACHED
+
+#7 [linux/amd64 builder 1/5] FROM docker.io/library/python:3.9-slim@sha256:9d3f1231667e0532961c3dc310e88e8554fef00f092045e81dc9bccf435aca7e
+#7 resolve docker.io/library/python:3.9-slim@sha256:9d3f1231667e0532961c3dc310e88e8554fef00f092045e81dc9bccf435aca7e done
+#7 sha256:ea3499df304f0a84e9f076a05f0cfe2a64d8fcb884894ce682df9204c6a18a91 0B / 249B 0.2s
+#7 sha256:5ec99fe17015e703c289d110b020e4e362d5b425be957d68bfb400d56d83f234 0B / 13.37MB 0.1s
+#7 sha256:0219e1e5e6ef3ef9d91f78826576a112b1c20622c10c294a4a105811454d1cb1 0B / 1.29MB 0.2s
+#7 sha256:ea3499df304f0a84e9f076a05f0cfe2a64d8fcb884894ce682df9204c6a18a91 249B / 249B 0.6s
+#7 sha256:ea3499df304f0a84e9f076a05f0cfe2a64d8fcb884894ce682df9204c6a18a91 249B / 249B 0.6s done
+#7 sha256:5ec99fe17015e703c289d110b020e4e362d5b425be957d68bfb400d56d83f234 3.15MB / 13.37MB 0.8s
+#7 sha256:5ec99fe17015e703c289d110b020e4e362d5b425be957d68bfb400d56d83f234 7.34MB / 13.37MB 0.9s
+#7 sha256:5ec99fe17015e703c289d110b020e4e362d5b425be957d68bfb400d56d83f234 9.44MB / 13.37MB 1.1s
+#7 sha256:5ec99fe17015e703c289d110b020e4e362d5b425be957d68bfb400d56d83f234 12.58MB / 13.37MB 1.2s
+#7 sha256:5ec99fe17015e703c289d110b020e4e362d5b425be957d68bfb400d56d83f234 13.37MB / 13.37MB 1.2s done
+#7 sha256:0219e1e5e6ef3ef9d91f78826576a112b1c20622c10c294a4a105811454d1cb1 1.29MB / 1.29MB 1.2s done
+#7 extracting sha256:0219e1e5e6ef3ef9d91f78826576a112b1c20622c10c294a4a105811454d1cb1 0.1s done
+#7 extracting sha256:5ec99fe17015e703c289d110b020e4e362d5b425be957d68bfb400d56d83f234
+#7 extracting sha256:5ec99fe17015e703c289d110b020e4e362d5b425be957d68bfb400d56d83f234 0.2s done
+#7 DONE 1.5s
+
+#8 [linux/arm64 builder 2/5] RUN apt-get update && apt-get install -y --no-install-recommends     build-essential     gcc     && rm -rf /var/lib/apt/lists/*
+#8 0.248 Get:1 http://deb.debian.org/debian bookworm InRelease [151 kB]
+#8 0.349 Get:2 http://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+#8 0.485 Get:3 http://deb.debian.org/debian-security bookworm-security InRelease [48.0 kB]
+#8 0.523 Get:4 http://deb.debian.org/debian bookworm/main arm64 Packages [8693 kB]
+#8 ...
+
+#7 [linux/amd64 builder 1/5] FROM docker.io/library/python:3.9-slim@sha256:9d3f1231667e0532961c3dc310e88e8554fef00f092045e81dc9bccf435aca7e
+#7 extracting sha256:ea3499df304f0a84e9f076a05f0cfe2a64d8fcb884894ce682df9204c6a18a91 done
+#7 DONE 1.5s
+
+#9 [linux/amd64 builder 2/5] RUN apt-get update && apt-get install -y --no-install-recommends     build-essential     gcc     && rm -rf /var/lib/apt/lists/*
+#9 0.329 Hit:1 http://deb.debian.org/debian trixie InRelease
+#9 0.340 Get:2 http://deb.debian.org/debian trixie-updates InRelease [47.1 kB]
+#9 0.397 Hit:3 http://deb.debian.org/debian-security trixie-security InRelease
+#9 0.448 Get:4 http://deb.debian.org/debian trixie/main amd64 Packages [9668 kB]
+#9 ...
+
+#10 [linux/amd64 production 2/8] RUN apt-get update && apt-get install -y --no-install-recommends     curl     && rm -rf /var/lib/apt/lists/*     && apt-get clean
+#10 0.310 Hit:1 http://deb.debian.org/debian trixie InRelease
+#10 0.329 Get:2 http://deb.debian.org/debian trixie-updates InRelease [47.1 kB]
+#10 0.401 Hit:3 http://deb.debian.org/debian-security trixie-security InRelease
+#10 0.437 Get:4 http://deb.debian.org/debian trixie/main amd64 Packages [9668 kB]
+#10 7.566 Get:5 http://deb.debian.org/debian trixie-updates/main amd64 Packages [2432 B]
+#10 7.570 Get:6 http://deb.debian.org/debian-security trixie-security/main amd64 Packages [5304 B]
+#10 8.298 Fetched 9722 kB in 8s (1198 kB/s)
+#10 8.298 Reading package lists...
+#10 8.833 Reading package lists...
+#10 9.303 Building dependency tree...
+#10 9.439 Reading state information...
+#10 9.802 The following additional packages will be installed:
+#10 9.803   libbrotli1 libcom-err2 libcurl4t64 libgnutls30t64 libgssapi-krb5-2 libidn2-0
+#10 9.803   libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap2 libnghttp2-14
+#10 9.803   libnghttp3-9 libp11-kit0 libpsl5t64 librtmp1 libsasl2-2 libsasl2-modules-db
+#10 9.803   libssh2-1t64 libtasn1-6 libunistring5
+#10 9.804 Suggested packages:
+#10 9.804   gnutls-bin krb5-doc krb5-user
+#10 9.804 Recommended packages:
+#10 9.804   bash-completion krb5-locales libldap-common publicsuffix libsasl2-modules
+#10 9.936 The following NEW packages will be installed:
+#10 9.937   curl libbrotli1 libcom-err2 libcurl4t64 libgnutls30t64 libgssapi-krb5-2
+#10 9.937   libidn2-0 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap2
+#10 9.937   libnghttp2-14 libnghttp3-9 libp11-kit0 libpsl5t64 librtmp1 libsasl2-2
+#10 9.937   libsasl2-modules-db libssh2-1t64 libtasn1-6 libunistring5
+#10 10.12 0 upgraded, 22 newly installed, 0 to remove and 0 not upgraded.
+#10 10.12 Need to get 4881 kB of archives.
+#10 10.12 After this operation, 14.7 MB of additional disk space will be used.
+#10 10.12 Get:1 http://deb.debian.org/debian trixie/main amd64 libbrotli1 amd64 1.1.0-2+b7 [307 kB]
+#10 10.29 Get:2 http://deb.debian.org/debian trixie/main amd64 libkrb5support0 amd64 1.21.3-5 [33.0 kB]
+#10 10.33 Get:3 http://deb.debian.org/debian trixie/main amd64 libcom-err2 amd64 1.47.2-3+b3 [25.0 kB]
+#10 10.33 Get:4 http://deb.debian.org/debian trixie/main amd64 libk5crypto3 amd64 1.21.3-5 [81.5 kB]
+#10 10.33 Get:5 http://deb.debian.org/debian trixie/main amd64 libkeyutils1 amd64 1.6.3-6 [9456 B]
+#10 10.33 Get:6 http://deb.debian.org/debian trixie/main amd64 libkrb5-3 amd64 1.21.3-5 [326 kB]
+#10 10.45 Get:7 http://deb.debian.org/debian trixie/main amd64 libgssapi-krb5-2 amd64 1.21.3-5 [138 kB]
+#10 10.50 Get:8 http://deb.debian.org/debian trixie/main amd64 libunistring5 amd64 1.3-2 [477 kB]
+#10 10.72 Get:9 http://deb.debian.org/debian trixie/main amd64 libidn2-0 amd64 2.3.8-2 [109 kB]
+#10 10.81 Get:10 http://deb.debian.org/debian trixie/main amd64 libsasl2-modules-db amd64 2.1.28+dfsg1-9 [19.8 kB]
+#10 10.83 Get:11 http://deb.debian.org/debian trixie/main amd64 libsasl2-2 amd64 2.1.28+dfsg1-9 [57.5 kB]
+#10 10.87 Get:12 http://deb.debian.org/debian trixie/main amd64 libldap2 amd64 2.6.10+dfsg-1 [194 kB]
+#10 11.08 Get:13 http://deb.debian.org/debian trixie/main amd64 libnghttp2-14 amd64 1.64.0-1.1 [76.0 kB]
+#10 11.21 Get:14 http://deb.debian.org/debian trixie/main amd64 libnghttp3-9 amd64 1.8.0-1 [67.7 kB]
+#10 11.33 Get:15 http://deb.debian.org/debian trixie/main amd64 libpsl5t64 amd64 0.21.2-1.1+b1 [57.2 kB]
+#10 11.45 Get:16 http://deb.debian.org/debian trixie/main amd64 libp11-kit0 amd64 0.25.5-3 [425 kB]
+#10 ...
+
+#8 [linux/arm64 builder 2/5] RUN apt-get update && apt-get install -y --no-install-recommends     build-essential     gcc     && rm -rf /var/lib/apt/lists/*
+#8 12.86 Get:5 http://deb.debian.org/debian bookworm-updates/main arm64 Packages [6936 B]
+#8 12.89 Get:6 http://deb.debian.org/debian-security bookworm-security/main arm64 Packages [269 kB]
+#8 13.48 Fetched 9224 kB in 13s (689 kB/s)
+#8 13.48 Reading package lists...
+#8 13.76 Reading package lists...
+#8 14.02 Building dependency tree...
+#8 14.09 Reading state information...
+#8 14.18 The following additional packages will be installed:
+#8 14.18   binutils binutils-aarch64-linux-gnu binutils-common bzip2 cpp cpp-12
+#8 14.18   dpkg-dev g++ g++-12 gcc-12 libasan8 libatomic1 libbinutils libc-dev-bin
+#8 14.18   libc6-dev libcc1-0 libcrypt-dev libctf-nobfd0 libctf0 libdpkg-perl
+#8 14.18   libgcc-12-dev libgdbm-compat4 libgomp1 libgprofng0 libhwasan0 libisl23
+#8 14.18   libitm1 libjansson4 liblsan0 libmpc3 libmpfr6 libnsl-dev libperl5.36
+#8 14.18   libstdc++-12-dev libtirpc-dev libtsan2 libubsan1 linux-libc-dev make patch
+#8 14.18   perl perl-modules-5.36 rpcsvc-proto xz-utils
+#8 14.18 Suggested packages:
+#8 14.18   binutils-doc bzip2-doc cpp-doc gcc-12-locales cpp-12-doc debian-keyring
+#8 14.18   gcc-12-doc gcc-multilib manpages-dev autoconf automake libtool flex bison
+#8 14.18   gdb gcc-doc glibc-doc gnupg | sq | sqop | pgpainless-cli sensible-utils git
+#8 14.18   bzr libstdc++-12-doc make-doc ed diffutils-doc perl-doc
+#8 14.18   libterm-readline-gnu-perl | libterm-readline-perl-perl
+#8 14.18   libtap-harness-archive-perl
+#8 14.18 Recommended packages:
+#8 14.18   fakeroot gnupg | sq | sqop | pgpainless-cli libalgorithm-merge-perl manpages
+#8 14.18   manpages-dev libc-devtools libfile-fcntllock-perl liblocale-gettext-perl
+#8 14.32 The following NEW packages will be installed:
+#8 14.32   binutils binutils-aarch64-linux-gnu binutils-common build-essential bzip2
+#8 14.32   cpp cpp-12 dpkg-dev g++ g++-12 gcc gcc-12 libasan8 libatomic1 libbinutils
+#8 14.32   libc-dev-bin libc6-dev libcc1-0 libcrypt-dev libctf-nobfd0 libctf0
+#8 14.32   libdpkg-perl libgcc-12-dev libgdbm-compat4 libgomp1 libgprofng0 libhwasan0
+#8 14.32   libisl23 libitm1 libjansson4 liblsan0 libmpc3 libmpfr6 libnsl-dev
+#8 14.32   libperl5.36 libstdc++-12-dev libtirpc-dev libtsan2 libubsan1 linux-libc-dev
+#8 14.32   make patch perl perl-modules-5.36 rpcsvc-proto xz-utils
+#8 14.40 0 upgraded, 46 newly installed, 0 to remove and 2 not upgraded.
+#8 14.40 Need to get 66.0 MB of archives.
+#8 14.40 After this operation, 297 MB of additional disk space will be used.
+#8 14.40 Get:1 http://deb.debian.org/debian bookworm/main arm64 perl-modules-5.36 all 5.36.0-7+deb12u2 [2815 kB]
+#8 15.69 Get:2 http://deb.debian.org/debian bookworm/main arm64 libgdbm-compat4 arm64 1.23-3 [48.0 kB]
+#8 15.73 Get:3 http://deb.debian.org/debian bookworm/main arm64 libperl5.36 arm64 5.36.0-7+deb12u2 [4027 kB]
+#8 ...
+
+#10 [linux/amd64 production 2/8] RUN apt-get update && apt-get install -y --no-install-recommends     curl     && rm -rf /var/lib/apt/lists/*     && apt-get clean
+#10 12.39 Get:17 http://deb.debian.org/debian trixie/main amd64 libtasn1-6 amd64 4.20.0-2 [49.9 kB]
+#10 12.46 Get:18 http://deb.debian.org/debian trixie/main amd64 libgnutls30t64 amd64 3.8.9-3 [1465 kB]
+#10 14.76 Get:19 http://deb.debian.org/debian trixie/main amd64 librtmp1 amd64 2.4+20151223.gitfa8646d.1-2+b5 [58.8 kB]
+#10 14.86 Get:20 http://deb.debian.org/debian trixie/main amd64 libssh2-1t64 amd64 1.11.1-1 [245 kB]
+#10 15.31 Get:21 http://deb.debian.org/debian trixie/main amd64 libcurl4t64 amd64 8.14.1-2 [391 kB]
+#10 16.03 Get:22 http://deb.debian.org/debian trixie/main amd64 curl amd64 8.14.1-2 [269 kB]
+#10 16.69 debconf: unable to initialize frontend: Dialog
+#10 16.69 debconf: (TERM is not set, so the dialog frontend is not usable.)
+#10 16.69 debconf: falling back to frontend: Readline
+#10 16.69 debconf: unable to initialize frontend: Readline
+#10 16.69 debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC entries checked: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.40.1 /usr/local/share/perl/5.40.1 /usr/lib/x86_64-linux-gnu/perl5/5.40 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl-base /usr/lib/x86_64-linux-gnu/perl/5.40 /usr/share/perl/5.40 /usr/local/lib/site_perl) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 8, <STDIN> line 22.)
+#10 16.69 debconf: falling back to frontend: Teletype
+#10 16.73 debconf: unable to initialize frontend: Teletype
+#10 16.73 debconf: (This frontend requires a controlling tty.)
+#10 16.73 debconf: falling back to frontend: Noninteractive
+#10 17.32 Fetched 4881 kB in 6s (761 kB/s)
+#10 17.39 Selecting previously unselected package libbrotli1:amd64.
+#10 17.39 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5643 files and directories currently installed.)
+#10 17.40 Preparing to unpack .../00-libbrotli1_1.1.0-2+b7_amd64.deb ...
+#10 17.40 Unpacking libbrotli1:amd64 (1.1.0-2+b7) ...
+#10 17.50 Selecting previously unselected package libkrb5support0:amd64.
+#10 17.50 Preparing to unpack .../01-libkrb5support0_1.21.3-5_amd64.deb ...
+#10 17.50 Unpacking libkrb5support0:amd64 (1.21.3-5) ...
+#10 17.58 Selecting previously unselected package libcom-err2:amd64.
+#10 17.58 Preparing to unpack .../02-libcom-err2_1.47.2-3+b3_amd64.deb ...
+#10 17.58 Unpacking libcom-err2:amd64 (1.47.2-3+b3) ...
+#10 17.66 Selecting previously unselected package libk5crypto3:amd64.
+#10 17.67 Preparing to unpack .../03-libk5crypto3_1.21.3-5_amd64.deb ...
+#10 17.67 Unpacking libk5crypto3:amd64 (1.21.3-5) ...
+#10 17.75 Selecting previously unselected package libkeyutils1:amd64.
+#10 17.75 Preparing to unpack .../04-libkeyutils1_1.6.3-6_amd64.deb ...
+#10 17.75 Unpacking libkeyutils1:amd64 (1.6.3-6) ...
+#10 17.84 Selecting previously unselected package libkrb5-3:amd64.
+#10 17.84 Preparing to unpack .../05-libkrb5-3_1.21.3-5_amd64.deb ...
+#10 17.84 Unpacking libkrb5-3:amd64 (1.21.3-5) ...
+#10 17.94 Selecting previously unselected package libgssapi-krb5-2:amd64.
+#10 17.94 Preparing to unpack .../06-libgssapi-krb5-2_1.21.3-5_amd64.deb ...
+#10 17.94 Unpacking libgssapi-krb5-2:amd64 (1.21.3-5) ...
+#10 18.03 Selecting previously unselected package libunistring5:amd64.
+#10 18.03 Preparing to unpack .../07-libunistring5_1.3-2_amd64.deb ...
+#10 18.03 Unpacking libunistring5:amd64 (1.3-2) ...
+#10 18.13 Selecting previously unselected package libidn2-0:amd64.
+#10 18.13 Preparing to unpack .../08-libidn2-0_2.3.8-2_amd64.deb ...
+#10 18.13 Unpacking libidn2-0:amd64 (2.3.8-2) ...
+#10 18.22 Selecting previously unselected package libsasl2-modules-db:amd64.
+#10 18.22 Preparing to unpack .../09-libsasl2-modules-db_2.1.28+dfsg1-9_amd64.deb ...
+#10 18.22 Unpacking libsasl2-modules-db:amd64 (2.1.28+dfsg1-9) ...
+#10 18.30 Selecting previously unselected package libsasl2-2:amd64.
+#10 18.30 Preparing to unpack .../10-libsasl2-2_2.1.28+dfsg1-9_amd64.deb ...
+#10 18.30 Unpacking libsasl2-2:amd64 (2.1.28+dfsg1-9) ...
+#10 18.38 Selecting previously unselected package libldap2:amd64.
+#10 18.38 Preparing to unpack .../11-libldap2_2.6.10+dfsg-1_amd64.deb ...
+#10 18.38 Unpacking libldap2:amd64 (2.6.10+dfsg-1) ...
+#10 18.47 Selecting previously unselected package libnghttp2-14:amd64.
+#10 18.47 Preparing to unpack .../12-libnghttp2-14_1.64.0-1.1_amd64.deb ...
+#10 18.47 Unpacking libnghttp2-14:amd64 (1.64.0-1.1) ...
+#10 18.56 Selecting previously unselected package libnghttp3-9:amd64.
+#10 18.56 Preparing to unpack .../13-libnghttp3-9_1.8.0-1_amd64.deb ...
+#10 18.56 Unpacking libnghttp3-9:amd64 (1.8.0-1) ...
+#10 18.65 Selecting previously unselected package libpsl5t64:amd64.
+#10 18.65 Preparing to unpack .../14-libpsl5t64_0.21.2-1.1+b1_amd64.deb ...
+#10 18.65 Unpacking libpsl5t64:amd64 (0.21.2-1.1+b1) ...
+#10 18.74 Selecting previously unselected package libp11-kit0:amd64.
+#10 18.74 Preparing to unpack .../15-libp11-kit0_0.25.5-3_amd64.deb ...
+#10 18.74 Unpacking libp11-kit0:amd64 (0.25.5-3) ...
+#10 18.84 Selecting previously unselected package libtasn1-6:amd64.
+#10 18.84 Preparing to unpack .../16-libtasn1-6_4.20.0-2_amd64.deb ...
+#10 18.84 Unpacking libtasn1-6:amd64 (4.20.0-2) ...
+#10 18.92 Selecting previously unselected package libgnutls30t64:amd64.
+#10 18.92 Preparing to unpack .../17-libgnutls30t64_3.8.9-3_amd64.deb ...
+#10 18.92 Unpacking libgnutls30t64:amd64 (3.8.9-3) ...
+#10 19.04 Selecting previously unselected package librtmp1:amd64.
+#10 19.04 Preparing to unpack .../18-librtmp1_2.4+20151223.gitfa8646d.1-2+b5_amd64.deb ...
+#10 19.04 Unpacking librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2+b5) ...
+#10 19.13 Selecting previously unselected package libssh2-1t64:amd64.
+#10 19.13 Preparing to unpack .../19-libssh2-1t64_1.11.1-1_amd64.deb ...
+#10 19.13 Unpacking libssh2-1t64:amd64 (1.11.1-1) ...
+#10 19.22 Selecting previously unselected package libcurl4t64:amd64.
+#10 19.22 Preparing to unpack .../20-libcurl4t64_8.14.1-2_amd64.deb ...
+#10 19.22 Unpacking libcurl4t64:amd64 (8.14.1-2) ...
+#10 19.32 Selecting previously unselected package curl.
+#10 19.32 Preparing to unpack .../21-curl_8.14.1-2_amd64.deb ...
+#10 19.32 Unpacking curl (8.14.1-2) ...
+#10 19.39 Setting up libkeyutils1:amd64 (1.6.3-6) ...
+#10 19.39 Setting up libbrotli1:amd64 (1.1.0-2+b7) ...
+#10 19.40 Setting up libnghttp2-14:amd64 (1.64.0-1.1) ...
+#10 19.40 Setting up libcom-err2:amd64 (1.47.2-3+b3) ...
+#10 19.40 Setting up libkrb5support0:amd64 (1.21.3-5) ...
+#10 19.41 Setting up libsasl2-modules-db:amd64 (2.1.28+dfsg1-9) ...
+#10 19.41 Setting up libp11-kit0:amd64 (0.25.5-3) ...
+#10 19.41 Setting up libunistring5:amd64 (1.3-2) ...
+#10 19.41 Setting up libk5crypto3:amd64 (1.21.3-5) ...
+#10 19.42 Setting up libsasl2-2:amd64 (2.1.28+dfsg1-9) ...
+#10 19.42 Setting up libnghttp3-9:amd64 (1.8.0-1) ...
+#10 19.42 Setting up libtasn1-6:amd64 (4.20.0-2) ...
+#10 19.42 Setting up libkrb5-3:amd64 (1.21.3-5) ...
+#10 19.43 Setting up libssh2-1t64:amd64 (1.11.1-1) ...
+#10 19.43 Setting up libldap2:amd64 (2.6.10+dfsg-1) ...
+#10 19.43 Setting up libidn2-0:amd64 (2.3.8-2) ...
+#10 19.43 Setting up libgssapi-krb5-2:amd64 (1.21.3-5) ...
+#10 19.45 Setting up libgnutls30t64:amd64 (3.8.9-3) ...
+#10 19.45 Setting up libpsl5t64:amd64 (0.21.2-1.1+b1) ...
+#10 19.46 Setting up librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2+b5) ...
+#10 19.46 Setting up libcurl4t64:amd64 (8.14.1-2) ...
+#10 19.46 Setting up curl (8.14.1-2) ...
+#10 19.46 Processing triggers for libc-bin (2.41-12) ...
+#10 ...
+
+#8 [linux/arm64 builder 2/5] RUN apt-get update && apt-get install -y --no-install-recommends     build-essential     gcc     && rm -rf /var/lib/apt/lists/*
+#8 21.11 Get:4 http://deb.debian.org/debian bookworm/main arm64 perl arm64 5.36.0-7+deb12u2 [239 kB]
+#8 ...
+
+#10 [linux/amd64 production 2/8] RUN apt-get update && apt-get install -y --no-install-recommends     curl     && rm -rf /var/lib/apt/lists/*     && apt-get clean
+#10 DONE 19.7s
+
+#11 [linux/amd64 production 3/8] RUN groupadd -r iaqagent && useradd -r -g iaqagent -u 1000 iaqagent
+#11 0.107 useradd warning: iaqagent's uid 1000 is greater than SYS_UID_MAX 999
+#11 DONE 0.1s
+
+#12 [linux/amd64 production 4/8] WORKDIR /app
+#12 DONE 0.0s
+
+#9 [linux/amd64 builder 2/5] RUN apt-get update && apt-get install -y --no-install-recommends     build-essential     gcc     && rm -rf /var/lib/apt/lists/*
+#9 12.56 Get:5 http://deb.debian.org/debian trixie-updates/main amd64 Packages [2432 B]
+#9 12.56 Get:6 http://deb.debian.org/debian-security trixie-security/main amd64 Packages [5304 B]
+#9 13.27 Fetched 9722 kB in 13s (744 kB/s)
+#9 13.27 Reading package lists...
+#9 13.77 Reading package lists...
+#9 14.20 Building dependency tree...
+#9 14.32 Reading state information...
+#9 14.68 The following additional packages will be installed:
+#9 14.68   binutils binutils-common binutils-x86-64-linux-gnu bzip2 cpp cpp-14
+#9 14.68   cpp-14-x86-64-linux-gnu cpp-x86-64-linux-gnu dpkg-dev g++ g++-14
+#9 14.68   g++-14-x86-64-linux-gnu g++-x86-64-linux-gnu gcc-14 gcc-14-x86-64-linux-gnu
+#9 14.68   gcc-x86-64-linux-gnu libasan8 libatomic1 libbinutils libc-dev-bin libc6-dev
+#9 14.68   libcc1-0 libcrypt-dev libctf-nobfd0 libctf0 libdpkg-perl libgcc-14-dev
+#9 14.68   libgdbm-compat4t64 libgomp1 libgprofng0 libhwasan0 libisl23 libitm1
+#9 14.68   libjansson4 liblsan0 libmpc3 libmpfr6 libperl5.40 libquadmath0 libsframe1
+#9 14.68   libstdc++-14-dev libtsan2 libubsan1 linux-libc-dev make patch perl
+#9 14.68   perl-modules-5.40 rpcsvc-proto xz-utils
+#9 14.68 Suggested packages:
+#9 14.68   binutils-doc gprofng-gui binutils-gold bzip2-doc cpp-doc gcc-14-locales
+#9 14.68   cpp-14-doc debian-keyring debian-tag2upload-keyring g++-multilib
+#9 14.68   g++-14-multilib gcc-14-doc gcc-multilib manpages-dev autoconf automake
+#9 14.68   libtool flex bison gdb gcc-doc gcc-14-multilib gdb-x86-64-linux-gnu
+#9 14.68   libc-devtools glibc-doc sq | sqop | rsop | gosop | pgpainless-cli | gpg-sq
+#9 14.68   | gnupg sensible-utils git bzr libstdc++-14-doc make-doc ed diffutils-doc
+#9 14.68   perl-doc libterm-readline-gnu-perl | libterm-readline-perl-perl
+#9 14.68   libtap-harness-archive-perl
+#9 14.68 Recommended packages:
+#9 14.68   fakeroot sq | sqop | rsop | gosop | pgpainless-cli | gpg-sq | gnupg
+#9 14.68   libalgorithm-merge-perl manpages manpages-dev libfile-fcntllock-perl
+#9 14.68   liblocale-gettext-perl
+#9 14.84 The following NEW packages will be installed:
+#9 14.84   binutils binutils-common binutils-x86-64-linux-gnu build-essential bzip2 cpp
+#9 14.84   cpp-14 cpp-14-x86-64-linux-gnu cpp-x86-64-linux-gnu dpkg-dev g++ g++-14
+#9 14.84   g++-14-x86-64-linux-gnu g++-x86-64-linux-gnu gcc gcc-14
+#9 14.84   gcc-14-x86-64-linux-gnu gcc-x86-64-linux-gnu libasan8 libatomic1 libbinutils
+#9 14.84   libc-dev-bin libc6-dev libcc1-0 libcrypt-dev libctf-nobfd0 libctf0
+#9 14.84   libdpkg-perl libgcc-14-dev libgdbm-compat4t64 libgomp1 libgprofng0
+#9 14.84   libhwasan0 libisl23 libitm1 libjansson4 liblsan0 libmpc3 libmpfr6
+#9 14.84   libperl5.40 libquadmath0 libsframe1 libstdc++-14-dev libtsan2 libubsan1
+#9 14.84   linux-libc-dev make patch perl perl-modules-5.40 rpcsvc-proto xz-utils
+#9 14.99 0 upgraded, 52 newly installed, 0 to remove and 0 not upgraded.
+#9 14.99 Need to get 82.3 MB of archives.
+#9 14.99 After this operation, 336 MB of additional disk space will be used.
+#9 14.99 Get:1 http://deb.debian.org/debian trixie/main amd64 bzip2 amd64 1.0.8-6 [40.5 kB]
+#9 15.06 Get:2 http://deb.debian.org/debian trixie/main amd64 perl-modules-5.40 all 5.40.1-6 [3019 kB]
+#9 18.69 Get:3 http://deb.debian.org/debian trixie/main amd64 libgdbm-compat4t64 amd64 1.24-2 [50.3 kB]
+#9 18.75 Get:4 http://deb.debian.org/debian trixie/main amd64 libperl5.40 amd64 5.40.1-6 [4341 kB]
+#9 ...
+
+#8 [linux/arm64 builder 2/5] RUN apt-get update && apt-get install -y --no-install-recommends     build-essential     gcc     && rm -rf /var/lib/apt/lists/*
+#8 21.53 Get:5 http://deb.debian.org/debian bookworm/main arm64 bzip2 arm64 1.0.8-5+b1 [48.9 kB]
+#8 21.59 Get:6 http://deb.debian.org/debian bookworm/main arm64 xz-utils arm64 5.4.1-1 [469 kB]
+#8 22.14 Get:7 http://deb.debian.org/debian bookworm/main arm64 binutils-common arm64 2.40-2 [2487 kB]
+#8 24.43 Get:8 http://deb.debian.org/debian bookworm/main arm64 libbinutils arm64 2.40-2 [645 kB]
+#8 25.11 Get:9 http://deb.debian.org/debian bookworm/main arm64 libctf-nobfd0 arm64 2.40-2 [144 kB]
+#8 25.26 Get:10 http://deb.debian.org/debian bookworm/main arm64 libctf0 arm64 2.40-2 [79.2 kB]
+#8 25.33 Get:11 http://deb.debian.org/debian bookworm/main arm64 libgprofng0 arm64 2.40-2 [680 kB]
+#8 26.56 Get:12 http://deb.debian.org/debian bookworm/main arm64 libjansson4 arm64 2.14-2 [40.2 kB]
+#8 26.62 Get:13 http://deb.debian.org/debian bookworm/main arm64 binutils-aarch64-linux-gnu arm64 2.40-2 [2637 kB]
+#8 29.72 Get:14 http://deb.debian.org/debian bookworm/main arm64 binutils arm64 2.40-2 [64.9 kB]
+#8 29.84 Get:15 http://deb.debian.org/debian bookworm/main arm64 libc-dev-bin arm64 2.36-9+deb12u10 [46.2 kB]
+#8 29.94 Get:16 http://deb.debian.org/debian-security bookworm-security/main arm64 linux-libc-dev arm64 6.1.147-1 [2147 kB]
+#8 33.73 Get:17 http://deb.debian.org/debian bookworm/main arm64 libcrypt-dev arm64 1:4.4.33-2 [121 kB]
+#8 33.93 Get:18 http://deb.debian.org/debian bookworm/main arm64 libtirpc-dev arm64 1.3.3+ds-1 [194 kB]
+#8 34.19 Get:19 http://deb.debian.org/debian bookworm/main arm64 libnsl-dev arm64 1.3.0-2 [66.1 kB]
+#8 34.27 Get:20 http://deb.debian.org/debian bookworm/main arm64 rpcsvc-proto arm64 1.4.3-1 [59.7 kB]
+#8 34.33 Get:21 http://deb.debian.org/debian bookworm/main arm64 libc6-dev arm64 2.36-9+deb12u10 [1431 kB]
+#8 35.40 Get:22 http://deb.debian.org/debian bookworm/main arm64 libisl23 arm64 0.25-1.1 [610 kB]
+#8 ...
+
+#9 [linux/amd64 builder 2/5] RUN apt-get update && apt-get install -y --no-install-recommends     build-essential     gcc     && rm -rf /var/lib/apt/lists/*
+#9 24.15 Get:5 http://deb.debian.org/debian trixie/main amd64 perl amd64 5.40.1-6 [267 kB]
+#9 24.86 Get:6 http://deb.debian.org/debian trixie/main amd64 xz-utils amd64 5.8.1-1 [660 kB]
+#9 25.87 Get:7 http://deb.debian.org/debian trixie/main amd64 libsframe1 amd64 2.44-3 [78.4 kB]
+#9 25.97 Get:8 http://deb.debian.org/debian trixie/main amd64 binutils-common amd64 2.44-3 [2509 kB]
+#9 30.19 Get:9 http://deb.debian.org/debian trixie/main amd64 libbinutils amd64 2.44-3 [534 kB]
+#9 31.25 Get:10 http://deb.debian.org/debian trixie/main amd64 libgprofng0 amd64 2.44-3 [808 kB]
+#9 32.42 Get:11 http://deb.debian.org/debian trixie/main amd64 libctf-nobfd0 amd64 2.44-3 [156 kB]
+#9 32.66 Get:12 http://deb.debian.org/debian trixie/main amd64 libctf0 amd64 2.44-3 [88.6 kB]
+#9 32.82 Get:13 http://deb.debian.org/debian trixie/main amd64 libjansson4 amd64 2.14-2+b3 [39.8 kB]
+#9 32.88 Get:14 http://deb.debian.org/debian trixie/main amd64 binutils-x86-64-linux-gnu amd64 2.44-3 [1014 kB]
+#9 ...
+
+#8 [linux/arm64 builder 2/5] RUN apt-get update && apt-get install -y --no-install-recommends     build-essential     gcc     && rm -rf /var/lib/apt/lists/*
+#8 35.73 Get:23 http://deb.debian.org/debian bookworm/main arm64 libmpfr6 arm64 4.2.0-1 [600 kB]
+#8 36.08 Get:24 http://deb.debian.org/debian bookworm/main arm64 libmpc3 arm64 1.3.1-1 [49.2 kB]
+#8 36.11 Get:25 http://deb.debian.org/debian bookworm/main arm64 cpp-12 arm64 12.2.0-14+deb12u1 [8228 kB]
+#8 ...
+
+#9 [linux/amd64 builder 2/5] RUN apt-get update && apt-get install -y --no-install-recommends     build-essential     gcc     && rm -rf /var/lib/apt/lists/*
+#9 34.45 Get:15 http://deb.debian.org/debian trixie/main amd64 binutils amd64 2.44-3 [265 kB]
+#9 34.83 Get:16 http://deb.debian.org/debian trixie/main amd64 libc-dev-bin amd64 2.41-12 [58.2 kB]
+#9 34.93 Get:17 http://deb.debian.org/debian trixie/main amd64 linux-libc-dev all 6.12.38-1 [2627 kB]
+#9 37.90 Get:18 http://deb.debian.org/debian trixie/main amd64 libcrypt-dev amd64 1:4.4.38-1 [119 kB]
+#9 38.00 Get:19 http://deb.debian.org/debian trixie/main amd64 rpcsvc-proto amd64 1.4.3-1 [63.3 kB]
+#9 38.05 Get:20 http://deb.debian.org/debian trixie/main amd64 libc6-dev amd64 2.41-12 [1991 kB]
+#9 40.56 Get:21 http://deb.debian.org/debian trixie/main amd64 libisl23 amd64 0.27-1 [659 kB]
+#9 41.18 Get:22 http://deb.debian.org/debian trixie/main amd64 libmpfr6 amd64 4.2.2-1 [729 kB]
+#9 41.68 Get:23 http://deb.debian.org/debian trixie/main amd64 libmpc3 amd64 1.3.1-1+b3 [52.2 kB]
+#9 41.71 Get:24 http://deb.debian.org/debian trixie/main amd64 cpp-14-x86-64-linux-gnu amd64 14.2.0-19 [11.0 MB]
+#9 ...
+
+#8 [linux/arm64 builder 2/5] RUN apt-get update && apt-get install -y --no-install-recommends     build-essential     gcc     && rm -rf /var/lib/apt/lists/*
+#8 43.37 Get:26 http://deb.debian.org/debian bookworm/main arm64 cpp arm64 4:12.2.0-3 [6832 B]
+#8 43.37 Get:27 http://deb.debian.org/debian bookworm/main arm64 libcc1-0 arm64 12.2.0-14+deb12u1 [37.7 kB]
+#8 43.39 Get:28 http://deb.debian.org/debian bookworm/main arm64 libgomp1 arm64 12.2.0-14+deb12u1 [104 kB]
+#8 43.44 Get:29 http://deb.debian.org/debian bookworm/main arm64 libitm1 arm64 12.2.0-14+deb12u1 [24.0 kB]
+#8 43.46 Get:30 http://deb.debian.org/debian bookworm/main arm64 libatomic1 arm64 12.2.0-14+deb12u1 [9568 B]
+#8 43.46 Get:31 http://deb.debian.org/debian bookworm/main arm64 libasan8 arm64 12.2.0-14+deb12u1 [2096 kB]
+#8 44.36 Get:32 http://deb.debian.org/debian bookworm/main arm64 liblsan0 arm64 12.2.0-14+deb12u1 [926 kB]
+#8 44.73 Get:33 http://deb.debian.org/debian bookworm/main arm64 libtsan2 arm64 12.2.0-14+deb12u1 [2178 kB]
+#8 46.36 Get:34 http://deb.debian.org/debian bookworm/main arm64 libubsan1 arm64 12.2.0-14+deb12u1 [862 kB]
+#8 47.07 Get:35 http://deb.debian.org/debian bookworm/main arm64 libhwasan0 arm64 12.2.0-14+deb12u1 [999 kB]
+#8 47.84 Get:36 http://deb.debian.org/debian bookworm/main arm64 libgcc-12-dev arm64 12.2.0-14+deb12u1 [956 kB]
+#8 48.68 Get:37 http://deb.debian.org/debian bookworm/main arm64 gcc-12 arm64 12.2.0-14+deb12u1 [16.3 MB]
+#8 ...
+
+#9 [linux/amd64 builder 2/5] RUN apt-get update && apt-get install -y --no-install-recommends     build-essential     gcc     && rm -rf /var/lib/apt/lists/*
+#9 51.87 Get:25 http://deb.debian.org/debian trixie/main amd64 cpp-14 amd64 14.2.0-19 [1280 B]
+#9 51.88 Get:26 http://deb.debian.org/debian trixie/main amd64 cpp-x86-64-linux-gnu amd64 4:14.2.0-1 [4840 B]
+#9 51.88 Get:27 http://deb.debian.org/debian trixie/main amd64 cpp amd64 4:14.2.0-1 [1568 B]
+#9 51.88 Get:28 http://deb.debian.org/debian trixie/main amd64 libcc1-0 amd64 14.2.0-19 [42.8 kB]
+#9 51.93 Get:29 http://deb.debian.org/debian trixie/main amd64 libgomp1 amd64 14.2.0-19 [137 kB]
+#9 52.05 Get:30 http://deb.debian.org/debian trixie/main amd64 libitm1 amd64 14.2.0-19 [26.0 kB]
+#9 52.06 Get:31 http://deb.debian.org/debian trixie/main amd64 libatomic1 amd64 14.2.0-19 [9308 B]
+#9 52.08 Get:32 http://deb.debian.org/debian trixie/main amd64 libasan8 amd64 14.2.0-19 [2725 kB]
+#9 54.51 Get:33 http://deb.debian.org/debian trixie/main amd64 liblsan0 amd64 14.2.0-19 [1204 kB]
+#9 55.23 Get:34 http://deb.debian.org/debian trixie/main amd64 libtsan2 amd64 14.2.0-19 [2460 kB]
+#9 56.67 Get:35 http://deb.debian.org/debian trixie/main amd64 libubsan1 amd64 14.2.0-19 [1074 kB]
+#9 57.37 Get:36 http://deb.debian.org/debian trixie/main amd64 libhwasan0 amd64 14.2.0-19 [1488 kB]
+#9 58.33 Get:37 http://deb.debian.org/debian trixie/main amd64 libquadmath0 amd64 14.2.0-19 [145 kB]
+#9 58.43 Get:38 http://deb.debian.org/debian trixie/main amd64 libgcc-14-dev amd64 14.2.0-19 [2672 kB]
+#9 61.74 Get:39 http://deb.debian.org/debian trixie/main amd64 gcc-14-x86-64-linux-gnu amd64 14.2.0-19 [21.4 MB]
+#9 ...
+
+#8 [linux/arm64 builder 2/5] RUN apt-get update && apt-get install -y --no-install-recommends     build-essential     gcc     && rm -rf /var/lib/apt/lists/*
+#8 66.16 Get:38 http://deb.debian.org/debian bookworm/main arm64 gcc arm64 4:12.2.0-3 [5244 B]
+#8 66.16 Get:39 http://deb.debian.org/debian bookworm/main arm64 libstdc++-12-dev arm64 12.2.0-14+deb12u1 [2007 kB]
+#8 68.37 Get:40 http://deb.debian.org/debian bookworm/main arm64 g++-12 arm64 12.2.0-14+deb12u1 [9072 kB]
+#8 81.09 Get:41 http://deb.debian.org/debian bookworm/main arm64 g++ arm64 4:12.2.0-3 [1336 B]
+#8 81.09 Get:42 http://deb.debian.org/debian bookworm/main arm64 make arm64 4.3-4.1 [391 kB]
+#8 81.47 Get:43 http://deb.debian.org/debian bookworm/main arm64 libdpkg-perl all 1.21.22 [603 kB]
+#8 82.18 Get:44 http://deb.debian.org/debian bookworm/main arm64 patch arm64 2.7.6-7 [121 kB]
+#8 82.31 Get:45 http://deb.debian.org/debian bookworm/main arm64 dpkg-dev all 1.21.22 [1353 kB]
+#8 84.27 Get:46 http://deb.debian.org/debian bookworm/main arm64 build-essential arm64 12.9 [7704 B]
+#8 84.41 debconf: delaying package configuration, since apt-utils is not installed
+#8 84.43 Fetched 66.0 MB in 1min 10s (944 kB/s)
+#8 84.44 Selecting previously unselected package perl-modules-5.36.
+#8 84.44 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 6682 files and directories currently installed.)
+#8 84.46 Preparing to unpack .../00-perl-modules-5.36_5.36.0-7+deb12u2_all.deb ...
+#8 84.46 Unpacking perl-modules-5.36 (5.36.0-7+deb12u2) ...
+#8 84.68 Selecting previously unselected package libgdbm-compat4:arm64.
+#8 84.68 Preparing to unpack .../01-libgdbm-compat4_1.23-3_arm64.deb ...
+#8 84.68 Unpacking libgdbm-compat4:arm64 (1.23-3) ...
+#8 84.69 Selecting previously unselected package libperl5.36:arm64.
+#8 84.69 Preparing to unpack .../02-libperl5.36_5.36.0-7+deb12u2_arm64.deb ...
+#8 84.70 Unpacking libperl5.36:arm64 (5.36.0-7+deb12u2) ...
+#8 84.91 Selecting previously unselected package perl.
+#8 84.91 Preparing to unpack .../03-perl_5.36.0-7+deb12u2_arm64.deb ...
+#8 84.91 Unpacking perl (5.36.0-7+deb12u2) ...
+#8 84.93 Selecting previously unselected package bzip2.
+#8 84.93 Preparing to unpack .../04-bzip2_1.0.8-5+b1_arm64.deb ...
+#8 84.93 Unpacking bzip2 (1.0.8-5+b1) ...
+#8 84.95 Selecting previously unselected package xz-utils.
+#8 84.95 Preparing to unpack .../05-xz-utils_5.4.1-1_arm64.deb ...
+#8 84.95 Unpacking xz-utils (5.4.1-1) ...
+#8 84.98 Selecting previously unselected package binutils-common:arm64.
+#8 84.98 Preparing to unpack .../06-binutils-common_2.40-2_arm64.deb ...
+#8 84.98 Unpacking binutils-common:arm64 (2.40-2) ...
+#8 85.10 Selecting previously unselected package libbinutils:arm64.
+#8 85.11 Preparing to unpack .../07-libbinutils_2.40-2_arm64.deb ...
+#8 85.11 Unpacking libbinutils:arm64 (2.40-2) ...
+#8 85.15 Selecting previously unselected package libctf-nobfd0:arm64.
+#8 85.15 Preparing to unpack .../08-libctf-nobfd0_2.40-2_arm64.deb ...
+#8 85.15 Unpacking libctf-nobfd0:arm64 (2.40-2) ...
+#8 85.16 Selecting previously unselected package libctf0:arm64.
+#8 85.16 Preparing to unpack .../09-libctf0_2.40-2_arm64.deb ...
+#8 85.16 Unpacking libctf0:arm64 (2.40-2) ...
+#8 85.18 Selecting previously unselected package libgprofng0:arm64.
+#8 85.18 Preparing to unpack .../10-libgprofng0_2.40-2_arm64.deb ...
+#8 85.18 Unpacking libgprofng0:arm64 (2.40-2) ...
+#8 85.23 Selecting previously unselected package libjansson4:arm64.
+#8 85.23 Preparing to unpack .../11-libjansson4_2.14-2_arm64.deb ...
+#8 85.23 Unpacking libjansson4:arm64 (2.14-2) ...
+#8 85.24 Selecting previously unselected package binutils-aarch64-linux-gnu.
+#8 85.24 Preparing to unpack .../12-binutils-aarch64-linux-gnu_2.40-2_arm64.deb ...
+#8 85.24 Unpacking binutils-aarch64-linux-gnu (2.40-2) ...
+#8 85.41 Selecting previously unselected package binutils.
+#8 85.41 Preparing to unpack .../13-binutils_2.40-2_arm64.deb ...
+#8 85.41 Unpacking binutils (2.40-2) ...
+#8 85.42 Selecting previously unselected package libc-dev-bin.
+#8 85.42 Preparing to unpack .../14-libc-dev-bin_2.36-9+deb12u10_arm64.deb ...
+#8 85.42 Unpacking libc-dev-bin (2.36-9+deb12u10) ...
+#8 85.43 Selecting previously unselected package linux-libc-dev:arm64.
+#8 85.43 Preparing to unpack .../15-linux-libc-dev_6.1.147-1_arm64.deb ...
+#8 85.43 Unpacking linux-libc-dev:arm64 (6.1.147-1) ...
+#8 85.54 Selecting previously unselected package libcrypt-dev:arm64.
+#8 85.54 Preparing to unpack .../16-libcrypt-dev_1%3a4.4.33-2_arm64.deb ...
+#8 85.55 Unpacking libcrypt-dev:arm64 (1:4.4.33-2) ...
+#8 85.56 Selecting previously unselected package libtirpc-dev:arm64.
+#8 85.56 Preparing to unpack .../17-libtirpc-dev_1.3.3+ds-1_arm64.deb ...
+#8 85.56 Unpacking libtirpc-dev:arm64 (1.3.3+ds-1) ...
+#8 85.58 Selecting previously unselected package libnsl-dev:arm64.
+#8 85.58 Preparing to unpack .../18-libnsl-dev_1.3.0-2_arm64.deb ...
+#8 85.58 Unpacking libnsl-dev:arm64 (1.3.0-2) ...
+#8 85.59 Selecting previously unselected package rpcsvc-proto.
+#8 85.60 Preparing to unpack .../19-rpcsvc-proto_1.4.3-1_arm64.deb ...
+#8 85.60 Unpacking rpcsvc-proto (1.4.3-1) ...
+#8 85.61 Selecting previously unselected package libc6-dev:arm64.
+#8 85.61 Preparing to unpack .../20-libc6-dev_2.36-9+deb12u10_arm64.deb ...
+#8 85.61 Unpacking libc6-dev:arm64 (2.36-9+deb12u10) ...
+#8 85.71 Selecting previously unselected package libisl23:arm64.
+#8 85.71 Preparing to unpack .../21-libisl23_0.25-1.1_arm64.deb ...
+#8 85.71 Unpacking libisl23:arm64 (0.25-1.1) ...
+#8 85.75 Selecting previously unselected package libmpfr6:arm64.
+#8 85.75 Preparing to unpack .../22-libmpfr6_4.2.0-1_arm64.deb ...
+#8 85.75 Unpacking libmpfr6:arm64 (4.2.0-1) ...
+#8 85.77 Selecting previously unselected package libmpc3:arm64.
+#8 85.77 Preparing to unpack .../23-libmpc3_1.3.1-1_arm64.deb ...
+#8 85.78 Unpacking libmpc3:arm64 (1.3.1-1) ...
+#8 85.79 Selecting previously unselected package cpp-12.
+#8 85.79 Preparing to unpack .../24-cpp-12_12.2.0-14+deb12u1_arm64.deb ...
+#8 85.79 Unpacking cpp-12 (12.2.0-14+deb12u1) ...
+#8 86.16 Selecting previously unselected package cpp.
+#8 86.16 Preparing to unpack .../25-cpp_4%3a12.2.0-3_arm64.deb ...
+#8 86.16 Unpacking cpp (4:12.2.0-3) ...
+#8 86.17 Selecting previously unselected package libcc1-0:arm64.
+#8 86.17 Preparing to unpack .../26-libcc1-0_12.2.0-14+deb12u1_arm64.deb ...
+#8 86.17 Unpacking libcc1-0:arm64 (12.2.0-14+deb12u1) ...
+#8 86.18 Selecting previously unselected package libgomp1:arm64.
+#8 86.18 Preparing to unpack .../27-libgomp1_12.2.0-14+deb12u1_arm64.deb ...
+#8 86.18 Unpacking libgomp1:arm64 (12.2.0-14+deb12u1) ...
+#8 86.19 Selecting previously unselected package libitm1:arm64.
+#8 86.19 Preparing to unpack .../28-libitm1_12.2.0-14+deb12u1_arm64.deb ...
+#8 86.19 Unpacking libitm1:arm64 (12.2.0-14+deb12u1) ...
+#8 86.20 Selecting previously unselected package libatomic1:arm64.
+#8 86.21 Preparing to unpack .../29-libatomic1_12.2.0-14+deb12u1_arm64.deb ...
+#8 86.21 Unpacking libatomic1:arm64 (12.2.0-14+deb12u1) ...
+#8 86.22 Selecting previously unselected package libasan8:arm64.
+#8 86.22 Preparing to unpack .../30-libasan8_12.2.0-14+deb12u1_arm64.deb ...
+#8 86.22 Unpacking libasan8:arm64 (12.2.0-14+deb12u1) ...
+#8 86.32 Selecting previously unselected package liblsan0:arm64.
+#8 86.32 Preparing to unpack .../31-liblsan0_12.2.0-14+deb12u1_arm64.deb ...
+#8 86.32 Unpacking liblsan0:arm64 (12.2.0-14+deb12u1) ...
+#8 86.37 Selecting previously unselected package libtsan2:arm64.
+#8 86.37 Preparing to unpack .../32-libtsan2_12.2.0-14+deb12u1_arm64.deb ...
+#8 86.37 Unpacking libtsan2:arm64 (12.2.0-14+deb12u1) ...
+#8 86.48 Selecting previously unselected package libubsan1:arm64.
+#8 86.48 Preparing to unpack .../33-libubsan1_12.2.0-14+deb12u1_arm64.deb ...
+#8 86.48 Unpacking libubsan1:arm64 (12.2.0-14+deb12u1) ...
+#8 86.53 Selecting previously unselected package libhwasan0:arm64.
+#8 86.53 Preparing to unpack .../34-libhwasan0_12.2.0-14+deb12u1_arm64.deb ...
+#8 86.53 Unpacking libhwasan0:arm64 (12.2.0-14+deb12u1) ...
+#8 86.58 Selecting previously unselected package libgcc-12-dev:arm64.
+#8 86.59 Preparing to unpack .../35-libgcc-12-dev_12.2.0-14+deb12u1_arm64.deb ...
+#8 86.59 Unpacking libgcc-12-dev:arm64 (12.2.0-14+deb12u1) ...
+#8 86.65 Selecting previously unselected package gcc-12.
+#8 86.65 Preparing to unpack .../36-gcc-12_12.2.0-14+deb12u1_arm64.deb ...
+#8 86.65 Unpacking gcc-12 (12.2.0-14+deb12u1) ...
+#8 87.17 Selecting previously unselected package gcc.
+#8 87.17 Preparing to unpack .../37-gcc_4%3a12.2.0-3_arm64.deb ...
+#8 87.17 Unpacking gcc (4:12.2.0-3) ...
+#8 87.18 Selecting previously unselected package libstdc++-12-dev:arm64.
+#8 87.18 Preparing to unpack .../38-libstdc++-12-dev_12.2.0-14+deb12u1_arm64.deb ...
+#8 87.19 Unpacking libstdc++-12-dev:arm64 (12.2.0-14+deb12u1) ...
+#8 87.30 Selecting previously unselected package g++-12.
+#8 87.30 Preparing to unpack .../39-g++-12_12.2.0-14+deb12u1_arm64.deb ...
+#8 87.30 Unpacking g++-12 (12.2.0-14+deb12u1) ...
+#8 87.64 Selecting previously unselected package g++.
+#8 87.64 Preparing to unpack .../40-g++_4%3a12.2.0-3_arm64.deb ...
+#8 87.65 Unpacking g++ (4:12.2.0-3) ...
+#8 87.65 Selecting previously unselected package make.
+#8 87.65 Preparing to unpack .../41-make_4.3-4.1_arm64.deb ...
+#8 87.65 Unpacking make (4.3-4.1) ...
+#8 87.68 Selecting previously unselected package libdpkg-perl.
+#8 87.68 Preparing to unpack .../42-libdpkg-perl_1.21.22_all.deb ...
+#8 87.68 Unpacking libdpkg-perl (1.21.22) ...
+#8 87.71 Selecting previously unselected package patch.
+#8 87.71 Preparing to unpack .../43-patch_2.7.6-7_arm64.deb ...
+#8 87.72 Unpacking patch (2.7.6-7) ...
+#8 87.73 Selecting previously unselected package dpkg-dev.
+#8 87.73 Preparing to unpack .../44-dpkg-dev_1.21.22_all.deb ...
+#8 87.73 Unpacking dpkg-dev (1.21.22) ...
+#8 87.79 Selecting previously unselected package build-essential.
+#8 87.79 Preparing to unpack .../45-build-essential_12.9_arm64.deb ...
+#8 87.79 Unpacking build-essential (12.9) ...
+#8 87.80 Setting up binutils-common:arm64 (2.40-2) ...
+#8 87.80 Setting up linux-libc-dev:arm64 (6.1.147-1) ...
+#8 87.81 Setting up libctf-nobfd0:arm64 (2.40-2) ...
+#8 87.81 Setting up libgomp1:arm64 (12.2.0-14+deb12u1) ...
+#8 87.81 Setting up bzip2 (1.0.8-5+b1) ...
+#8 87.81 Setting up libjansson4:arm64 (2.14-2) ...
+#8 87.82 Setting up perl-modules-5.36 (5.36.0-7+deb12u2) ...
+#8 87.82 Setting up libtirpc-dev:arm64 (1.3.3+ds-1) ...
+#8 87.82 Setting up rpcsvc-proto (1.4.3-1) ...
+#8 87.82 Setting up make (4.3-4.1) ...
+#8 87.82 Setting up libmpfr6:arm64 (4.2.0-1) ...
+#8 87.83 Setting up xz-utils (5.4.1-1) ...
+#8 87.83 update-alternatives: using /usr/bin/xz to provide /usr/bin/lzma (lzma) in auto mode
+#8 87.83 update-alternatives: warning: skip creation of /usr/share/man/man1/lzma.1.gz because associated file /usr/share/man/man1/xz.1.gz (of link group lzma) doesn't exist
+#8 87.83 update-alternatives: warning: skip creation of /usr/share/man/man1/unlzma.1.gz because associated file /usr/share/man/man1/unxz.1.gz (of link group lzma) doesn't exist
+#8 87.83 update-alternatives: warning: skip creation of /usr/share/man/man1/lzcat.1.gz because associated file /usr/share/man/man1/xzcat.1.gz (of link group lzma) doesn't exist
+#8 87.83 update-alternatives: warning: skip creation of /usr/share/man/man1/lzmore.1.gz because associated file /usr/share/man/man1/xzmore.1.gz (of link group lzma) doesn't exist
+#8 87.83 update-alternatives: warning: skip creation of /usr/share/man/man1/lzless.1.gz because associated file /usr/share/man/man1/xzless.1.gz (of link group lzma) doesn't exist
+#8 87.83 update-alternatives: warning: skip creation of /usr/share/man/man1/lzdiff.1.gz because associated file /usr/share/man/man1/xzdiff.1.gz (of link group lzma) doesn't exist
+#8 87.83 update-alternatives: warning: skip creation of /usr/share/man/man1/lzcmp.1.gz because associated file /usr/share/man/man1/xzcmp.1.gz (of link group lzma) doesn't exist
+#8 87.83 update-alternatives: warning: skip creation of /usr/share/man/man1/lzgrep.1.gz because associated file /usr/share/man/man1/xzgrep.1.gz (of link group lzma) doesn't exist
+#8 87.83 update-alternatives: warning: skip creation of /usr/share/man/man1/lzegrep.1.gz because associated file /usr/share/man/man1/xzegrep.1.gz (of link group lzma) doesn't exist
+#8 87.83 update-alternatives: warning: skip creation of /usr/share/man/man1/lzfgrep.1.gz because associated file /usr/share/man/man1/xzfgrep.1.gz (of link group lzma) doesn't exist
+#8 87.83 Setting up libmpc3:arm64 (1.3.1-1) ...
+#8 87.84 Setting up libatomic1:arm64 (12.2.0-14+deb12u1) ...
+#8 87.84 Setting up patch (2.7.6-7) ...
+#8 87.84 Setting up libgdbm-compat4:arm64 (1.23-3) ...
+#8 87.84 Setting up libubsan1:arm64 (12.2.0-14+deb12u1) ...
+#8 87.85 Setting up libnsl-dev:arm64 (1.3.0-2) ...
+#8 87.85 Setting up libhwasan0:arm64 (12.2.0-14+deb12u1) ...
+#8 87.85 Setting up libcrypt-dev:arm64 (1:4.4.33-2) ...
+#8 87.86 Setting up libasan8:arm64 (12.2.0-14+deb12u1) ...
+#8 87.86 Setting up libtsan2:arm64 (12.2.0-14+deb12u1) ...
+#8 87.86 Setting up libbinutils:arm64 (2.40-2) ...
+#8 87.86 Setting up libisl23:arm64 (0.25-1.1) ...
+#8 87.87 Setting up libc-dev-bin (2.36-9+deb12u10) ...
+#8 87.87 Setting up libcc1-0:arm64 (12.2.0-14+deb12u1) ...
+#8 87.87 Setting up libperl5.36:arm64 (5.36.0-7+deb12u2) ...
+#8 87.87 Setting up liblsan0:arm64 (12.2.0-14+deb12u1) ...
+#8 87.88 Setting up libitm1:arm64 (12.2.0-14+deb12u1) ...
+#8 87.88 Setting up libctf0:arm64 (2.40-2) ...
+#8 87.88 Setting up cpp-12 (12.2.0-14+deb12u1) ...
+#8 87.88 Setting up perl (5.36.0-7+deb12u2) ...
+#8 87.89 Setting up libgprofng0:arm64 (2.40-2) ...
+#8 87.89 Setting up libgcc-12-dev:arm64 (12.2.0-14+deb12u1) ...
+#8 87.90 Setting up libdpkg-perl (1.21.22) ...
+#8 87.90 Setting up cpp (4:12.2.0-3) ...
+#8 87.90 Setting up libc6-dev:arm64 (2.36-9+deb12u10) ...
+#8 87.90 Setting up libstdc++-12-dev:arm64 (12.2.0-14+deb12u1) ...
+#8 87.91 Setting up binutils-aarch64-linux-gnu (2.40-2) ...
+#8 87.91 Setting up binutils (2.40-2) ...
+#8 87.91 Setting up dpkg-dev (1.21.22) ...
+#8 87.92 Setting up gcc-12 (12.2.0-14+deb12u1) ...
+#8 87.92 Setting up g++-12 (12.2.0-14+deb12u1) ...
+#8 87.92 Setting up gcc (4:12.2.0-3) ...
+#8 87.93 Setting up g++ (4:12.2.0-3) ...
+#8 87.93 update-alternatives: using /usr/bin/g++ to provide /usr/bin/c++ (c++) in auto mode
+#8 87.93 Setting up build-essential (12.9) ...
+#8 87.94 Processing triggers for libc-bin (2.36-9+deb12u10) ...
+#8 DONE 88.3s
+
+#9 [linux/amd64 builder 2/5] RUN apt-get update && apt-get install -y --no-install-recommends     build-essential     gcc     && rm -rf /var/lib/apt/lists/*
+#9 ...
+
+#13 [linux/arm64 builder 3/5] WORKDIR /app
+#13 DONE 0.0s
+
+#14 [linux/arm64 builder 4/5] COPY requirements.txt .
+#14 DONE 0.0s
+
+#15 [linux/arm64 builder 5/5] RUN pip install --no-cache-dir --upgrade pip &&     pip install --no-cache-dir -r requirements.txt
+#15 0.983 Requirement already satisfied: pip in /usr/local/lib/python3.9/site-packages (23.0.1)
+#15 1.087 Collecting pip
+#15 1.184   Downloading pip-25.2-py3-none-any.whl (1.8 MB)
+#15 1.532      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 5.2 MB/s eta 0:00:00
+#15 1.571 Installing collected packages: pip
+#15 1.571   Attempting uninstall: pip
+#15 1.572     Found existing installation: pip 23.0.1
+#15 1.640     Uninstalling pip-23.0.1:
+#15 1.726       Successfully uninstalled pip-23.0.1
+#15 2.104 Successfully installed pip-25.2
+#15 2.104 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#15 2.398 Collecting pika==1.3.2 (from -r requirements.txt (line 1))
+#15 2.435   Downloading pika-1.3.2-py3-none-any.whl.metadata (13 kB)
+#15 2.542 Collecting pandas==2.1.4 (from -r requirements.txt (line 2))
+#15 2.555   Downloading pandas-2.1.4-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl.metadata (18 kB)
+#15 2.586 Collecting python-dotenv==1.0.0 (from -r requirements.txt (line 3))
+#15 2.596   Downloading python_dotenv-1.0.0-py3-none-any.whl.metadata (21 kB)
+#15 2.630 Collecting structlog==23.2.0 (from -r requirements.txt (line 4))
+#15 2.639   Downloading structlog-23.2.0-py3-none-any.whl.metadata (7.6 kB)
+#15 2.682 Collecting fastapi==0.104.1 (from -r requirements.txt (line 5))
+#15 2.691   Downloading fastapi-0.104.1-py3-none-any.whl.metadata (24 kB)
+#15 2.723 Collecting uvicorn==0.24.0 (from -r requirements.txt (line 6))
+#15 2.732   Downloading uvicorn-0.24.0-py3-none-any.whl.metadata (6.4 kB)
+#15 2.863 Collecting numpy<2,>=1.22.4 (from pandas==2.1.4->-r requirements.txt (line 2))
+#15 2.878   Downloading numpy-1.26.4-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl.metadata (62 kB)
+#15 2.925 Collecting python-dateutil>=2.8.2 (from pandas==2.1.4->-r requirements.txt (line 2))
+#15 2.937   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+#15 2.971 Collecting pytz>=2020.1 (from pandas==2.1.4->-r requirements.txt (line 2))
+#15 2.991   Downloading pytz-2025.2-py2.py3-none-any.whl.metadata (22 kB)
+#15 3.024 Collecting tzdata>=2022.1 (from pandas==2.1.4->-r requirements.txt (line 2))
+#15 3.039   Downloading tzdata-2025.2-py2.py3-none-any.whl.metadata (1.4 kB)
+#15 3.062 Collecting anyio<4.0.0,>=3.7.1 (from fastapi==0.104.1->-r requirements.txt (line 5))
+#15 3.078   Downloading anyio-3.7.1-py3-none-any.whl.metadata (4.7 kB)
+#15 3.193 Collecting pydantic!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0,>=1.7.4 (from fastapi==0.104.1->-r requirements.txt (line 5))
+#15 3.204   Downloading pydantic-2.11.7-py3-none-any.whl.metadata (67 kB)
+#15 3.283 Collecting starlette<0.28.0,>=0.27.0 (from fastapi==0.104.1->-r requirements.txt (line 5))
+#15 3.296   Downloading starlette-0.27.0-py3-none-any.whl.metadata (5.8 kB)
+#15 3.318 Collecting typing-extensions>=4.8.0 (from fastapi==0.104.1->-r requirements.txt (line 5))
+#15 3.334   Downloading typing_extensions-4.14.1-py3-none-any.whl.metadata (3.0 kB)
+#15 3.353 Collecting click>=7.0 (from uvicorn==0.24.0->-r requirements.txt (line 6))
+#15 3.370   Downloading click-8.1.8-py3-none-any.whl.metadata (2.3 kB)
+#15 3.390 Collecting h11>=0.8 (from uvicorn==0.24.0->-r requirements.txt (line 6))
+#15 3.402   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+#15 3.422 Collecting idna>=2.8 (from anyio<4.0.0,>=3.7.1->fastapi==0.104.1->-r requirements.txt (line 5))
+#15 3.431   Downloading idna-3.10-py3-none-any.whl.metadata (10 kB)
+#15 3.445 Collecting sniffio>=1.1 (from anyio<4.0.0,>=3.7.1->fastapi==0.104.1->-r requirements.txt (line 5))
+#15 3.455   Downloading sniffio-1.3.1-py3-none-any.whl.metadata (3.9 kB)
+#15 3.469 Collecting exceptiongroup (from anyio<4.0.0,>=3.7.1->fastapi==0.104.1->-r requirements.txt (line 5))
+#15 3.482   Downloading exceptiongroup-1.3.0-py3-none-any.whl.metadata (6.7 kB)
+#15 3.495 Collecting annotated-types>=0.6.0 (from pydantic!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0,>=1.7.4->fastapi==0.104.1->-r requirements.txt (line 5))
+#15 3.505   Downloading annotated_types-0.7.0-py3-none-any.whl.metadata (15 kB)
+#15 4.183 Collecting pydantic-core==2.33.2 (from pydantic!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0,>=1.7.4->fastapi==0.104.1->-r requirements.txt (line 5))
+#15 4.192   Downloading pydantic_core-2.33.2-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl.metadata (6.8 kB)
+#15 4.218 Collecting typing-inspection>=0.4.0 (from pydantic!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0,>=1.7.4->fastapi==0.104.1->-r requirements.txt (line 5))
+#15 4.231   Downloading typing_inspection-0.4.1-py3-none-any.whl.metadata (2.6 kB)
+#15 4.258 Collecting six>=1.5 (from python-dateutil>=2.8.2->pandas==2.1.4->-r requirements.txt (line 2))
+#15 4.267   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+#15 4.284 Downloading pika-1.3.2-py3-none-any.whl (155 kB)
+#15 4.361 Downloading pandas-2.1.4-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (14.9 MB)
+#15 11.07    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 14.9/14.9 MB 2.2 MB/s  0:00:06
+#15 11.08 Downloading python_dotenv-1.0.0-py3-none-any.whl (19 kB)
+#15 11.10 Downloading structlog-23.2.0-py3-none-any.whl (62 kB)
+#15 11.12 Downloading fastapi-0.104.1-py3-none-any.whl (92 kB)
+#15 11.16 Downloading uvicorn-0.24.0-py3-none-any.whl (59 kB)
+#15 11.19 Downloading anyio-3.7.1-py3-none-any.whl (80 kB)
+#15 11.23 Downloading numpy-1.26.4-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (14.2 MB)
+#15 ...
+
+#9 [linux/amd64 builder 2/5] RUN apt-get update && apt-get install -y --no-install-recommends     build-essential     gcc     && rm -rf /var/lib/apt/lists/*
+#9 90.34 Get:40 http://deb.debian.org/debian trixie/main amd64 gcc-14 amd64 14.2.0-19 [540 kB]
+#9 91.22 Get:41 http://deb.debian.org/debian trixie/main amd64 gcc-x86-64-linux-gnu amd64 4:14.2.0-1 [1436 B]
+#9 91.22 Get:42 http://deb.debian.org/debian trixie/main amd64 gcc amd64 4:14.2.0-1 [5136 B]
+#9 91.23 Get:43 http://deb.debian.org/debian trixie/main amd64 libstdc++-14-dev amd64 14.2.0-19 [2376 kB]
+#9 94.00 Get:44 http://deb.debian.org/debian trixie/main amd64 g++-14-x86-64-linux-gnu amd64 14.2.0-19 [12.1 MB]
+#9 ...
+
+#15 [linux/arm64 builder 5/5] RUN pip install --no-cache-dir --upgrade pip &&     pip install --no-cache-dir -r requirements.txt
+#15 16.77    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 14.2/14.2 MB 2.6 MB/s  0:00:05
+#15 16.80 Downloading pydantic-2.11.7-py3-none-any.whl (444 kB)
+#15 16.88 Downloading pydantic_core-2.33.2-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (1.9 MB)
+#15 17.15    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.9/1.9 MB 7.3 MB/s  0:00:00
+#15 17.16 Downloading starlette-0.27.0-py3-none-any.whl (66 kB)
+#15 17.18 Downloading annotated_types-0.7.0-py3-none-any.whl (13 kB)
+#15 17.19 Downloading click-8.1.8-py3-none-any.whl (98 kB)
+#15 17.22 Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+#15 17.23 Downloading idna-3.10-py3-none-any.whl (70 kB)
+#15 17.25 Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+#15 17.29 Downloading pytz-2025.2-py2.py3-none-any.whl (509 kB)
+#15 17.35 Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+#15 17.37 Downloading sniffio-1.3.1-py3-none-any.whl (10 kB)
+#15 17.38 Downloading typing_extensions-4.14.1-py3-none-any.whl (43 kB)
+#15 17.39 Downloading typing_inspection-0.4.1-py3-none-any.whl (14 kB)
+#15 17.40 Downloading tzdata-2025.2-py2.py3-none-any.whl (347 kB)
+#15 17.45 Downloading exceptiongroup-1.3.0-py3-none-any.whl (16 kB)
+#15 17.67 Installing collected packages: pytz, tzdata, typing-extensions, structlog, sniffio, six, python-dotenv, pika, numpy, idna, h11, click, annotated-types, uvicorn, typing-inspection, python-dateutil, pydantic-core, exceptiongroup, pydantic, pandas, anyio, starlette, fastapi
+#15 21.63 
+#15 21.63 Successfully installed annotated-types-0.7.0 anyio-3.7.1 click-8.1.8 exceptiongroup-1.3.0 fastapi-0.104.1 h11-0.16.0 idna-3.10 numpy-1.26.4 pandas-2.1.4 pika-1.3.2 pydantic-2.11.7 pydantic-core-2.33.2 python-dateutil-2.9.0.post0 python-dotenv-1.0.0 pytz-2025.2 six-1.17.0 sniffio-1.3.1 starlette-0.27.0 structlog-23.2.0 typing-extensions-4.14.1 typing-inspection-0.4.1 tzdata-2025.2 uvicorn-0.24.0
+#15 21.63 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#15 DONE 22.0s
+
+#9 [linux/amd64 builder 2/5] RUN apt-get update && apt-get install -y --no-install-recommends     build-essential     gcc     && rm -rf /var/lib/apt/lists/*
+#9 ...
+
+#16 [linux/arm64 production 2/8] RUN apt-get update && apt-get install -y --no-install-recommends     curl     && rm -rf /var/lib/apt/lists/*     && apt-get clean
+#16 CACHED
+
+#17 [linux/arm64 production 3/8] RUN groupadd -r iaqagent && useradd -r -g iaqagent -u 1000 iaqagent
+#17 CACHED
+
+#18 [linux/arm64 production 4/8] WORKDIR /app
+#18 CACHED
+
+#19 [linux/arm64 production 5/8] COPY --from=builder /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
+#19 DONE 0.9s
+
+#9 [linux/amd64 builder 2/5] RUN apt-get update && apt-get install -y --no-install-recommends     build-essential     gcc     && rm -rf /var/lib/apt/lists/*
+#9 ...
+
+#20 [linux/arm64 production 6/8] COPY --from=builder /usr/local/bin /usr/local/bin
+#20 DONE 0.0s
+
+#21 [linux/arm64 production 7/8] COPY --chown=iaqagent:iaqagent . .
+#21 DONE 0.0s
+
+#22 [linux/arm64 production 8/8] RUN mkdir -p /app/data /app/logs &&     chown -R iaqagent:iaqagent /app/data /app/logs
+#22 DONE 0.0s
+
+#9 [linux/amd64 builder 2/5] RUN apt-get update && apt-get install -y --no-install-recommends     build-essential     gcc     && rm -rf /var/lib/apt/lists/*
+#9 113.2 Get:45 http://deb.debian.org/debian trixie/main amd64 g++-14 amd64 14.2.0-19 [22.5 kB]
+#9 113.3 Get:46 http://deb.debian.org/debian trixie/main amd64 g++-x86-64-linux-gnu amd64 4:14.2.0-1 [1200 B]
+#9 113.3 Get:47 http://deb.debian.org/debian trixie/main amd64 g++ amd64 4:14.2.0-1 [1344 B]
+#9 113.3 Get:48 http://deb.debian.org/debian trixie/main amd64 make amd64 4.4.1-2 [463 kB]
+#9 114.2 Get:49 http://deb.debian.org/debian trixie/main amd64 libdpkg-perl all 1.22.21 [650 kB]
+#9 115.3 Get:50 http://deb.debian.org/debian trixie/main amd64 patch amd64 2.8-2 [134 kB]
+#9 115.6 Get:51 http://deb.debian.org/debian trixie/main amd64 dpkg-dev all 1.22.21 [1338 kB]
+#9 117.6 Get:52 http://deb.debian.org/debian trixie/main amd64 build-essential amd64 12.12 [4624 B]
+#9 118.0 debconf: unable to initialize frontend: Dialog
+#9 118.0 debconf: (TERM is not set, so the dialog frontend is not usable.)
+#9 118.0 debconf: falling back to frontend: Readline
+#9 118.0 debconf: unable to initialize frontend: Readline
+#9 118.0 debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC entries checked: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.40.1 /usr/local/share/perl/5.40.1 /usr/lib/x86_64-linux-gnu/perl5/5.40 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl-base /usr/lib/x86_64-linux-gnu/perl/5.40 /usr/share/perl/5.40 /usr/local/lib/site_perl) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 8, <STDIN> line 52.)
+#9 118.0 debconf: falling back to frontend: Teletype
+#9 118.1 debconf: unable to initialize frontend: Teletype
+#9 118.1 debconf: (This frontend requires a controlling tty.)
+#9 118.1 debconf: falling back to frontend: Noninteractive
+#9 119.3 Fetched 82.3 MB in 1min 43s (801 kB/s)
+#9 119.4 Selecting previously unselected package bzip2.
+#9 119.4 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5643 files and directories currently installed.)
+#9 119.4 Preparing to unpack .../00-bzip2_1.0.8-6_amd64.deb ...
+#9 119.4 Unpacking bzip2 (1.0.8-6) ...
+#9 119.5 Selecting previously unselected package perl-modules-5.40.
+#9 119.5 Preparing to unpack .../01-perl-modules-5.40_5.40.1-6_all.deb ...
+#9 119.5 Unpacking perl-modules-5.40 (5.40.1-6) ...
+#9 119.8 Selecting previously unselected package libgdbm-compat4t64:amd64.
+#9 119.8 Preparing to unpack .../02-libgdbm-compat4t64_1.24-2_amd64.deb ...
+#9 119.8 Unpacking libgdbm-compat4t64:amd64 (1.24-2) ...
+#9 119.9 Selecting previously unselected package libperl5.40:amd64.
+#9 119.9 Preparing to unpack .../03-libperl5.40_5.40.1-6_amd64.deb ...
+#9 119.9 Unpacking libperl5.40:amd64 (5.40.1-6) ...
+#9 120.1 Selecting previously unselected package perl.
+#9 120.1 Preparing to unpack .../04-perl_5.40.1-6_amd64.deb ...
+#9 120.1 Unpacking perl (5.40.1-6) ...
+#9 120.2 Selecting previously unselected package xz-utils.
+#9 120.2 Preparing to unpack .../05-xz-utils_5.8.1-1_amd64.deb ...
+#9 120.2 Unpacking xz-utils (5.8.1-1) ...
+#9 120.3 Selecting previously unselected package libsframe1:amd64.
+#9 120.3 Preparing to unpack .../06-libsframe1_2.44-3_amd64.deb ...
+#9 120.3 Unpacking libsframe1:amd64 (2.44-3) ...
+#9 120.4 Selecting previously unselected package binutils-common:amd64.
+#9 120.4 Preparing to unpack .../07-binutils-common_2.44-3_amd64.deb ...
+#9 120.4 Unpacking binutils-common:amd64 (2.44-3) ...
+#9 120.5 Selecting previously unselected package libbinutils:amd64.
+#9 120.5 Preparing to unpack .../08-libbinutils_2.44-3_amd64.deb ...
+#9 120.5 Unpacking libbinutils:amd64 (2.44-3) ...
+#9 120.6 Selecting previously unselected package libgprofng0:amd64.
+#9 120.6 Preparing to unpack .../09-libgprofng0_2.44-3_amd64.deb ...
+#9 120.6 Unpacking libgprofng0:amd64 (2.44-3) ...
+#9 120.8 Selecting previously unselected package libctf-nobfd0:amd64.
+#9 120.8 Preparing to unpack .../10-libctf-nobfd0_2.44-3_amd64.deb ...
+#9 120.8 Unpacking libctf-nobfd0:amd64 (2.44-3) ...
+#9 120.8 Selecting previously unselected package libctf0:amd64.
+#9 120.8 Preparing to unpack .../11-libctf0_2.44-3_amd64.deb ...
+#9 120.8 Unpacking libctf0:amd64 (2.44-3) ...
+#9 120.9 Selecting previously unselected package libjansson4:amd64.
+#9 120.9 Preparing to unpack .../12-libjansson4_2.14-2+b3_amd64.deb ...
+#9 120.9 Unpacking libjansson4:amd64 (2.14-2+b3) ...
+#9 121.0 Selecting previously unselected package binutils-x86-64-linux-gnu.
+#9 121.0 Preparing to unpack .../13-binutils-x86-64-linux-gnu_2.44-3_amd64.deb ...
+#9 121.0 Unpacking binutils-x86-64-linux-gnu (2.44-3) ...
+#9 121.2 Selecting previously unselected package binutils.
+#9 121.2 Preparing to unpack .../14-binutils_2.44-3_amd64.deb ...
+#9 121.2 Unpacking binutils (2.44-3) ...
+#9 121.3 Selecting previously unselected package libc-dev-bin.
+#9 121.3 Preparing to unpack .../15-libc-dev-bin_2.41-12_amd64.deb ...
+#9 121.3 Unpacking libc-dev-bin (2.41-12) ...
+#9 121.4 Selecting previously unselected package linux-libc-dev.
+#9 121.4 Preparing to unpack .../16-linux-libc-dev_6.12.38-1_all.deb ...
+#9 121.4 Unpacking linux-libc-dev (6.12.38-1) ...
+#9 121.7 Selecting previously unselected package libcrypt-dev:amd64.
+#9 121.7 Preparing to unpack .../17-libcrypt-dev_1%3a4.4.38-1_amd64.deb ...
+#9 121.8 Unpacking libcrypt-dev:amd64 (1:4.4.38-1) ...
+#9 121.9 Selecting previously unselected package rpcsvc-proto.
+#9 121.9 Preparing to unpack .../18-rpcsvc-proto_1.4.3-1_amd64.deb ...
+#9 121.9 Unpacking rpcsvc-proto (1.4.3-1) ...
+#9 121.9 Selecting previously unselected package libc6-dev:amd64.
+#9 122.0 Preparing to unpack .../19-libc6-dev_2.41-12_amd64.deb ...
+#9 122.0 Unpacking libc6-dev:amd64 (2.41-12) ...
+#9 122.1 Selecting previously unselected package libisl23:amd64.
+#9 122.1 Preparing to unpack .../20-libisl23_0.27-1_amd64.deb ...
+#9 122.1 Unpacking libisl23:amd64 (0.27-1) ...
+#9 122.2 Selecting previously unselected package libmpfr6:amd64.
+#9 122.2 Preparing to unpack .../21-libmpfr6_4.2.2-1_amd64.deb ...
+#9 122.2 Unpacking libmpfr6:amd64 (4.2.2-1) ...
+#9 122.3 Selecting previously unselected package libmpc3:amd64.
+#9 122.3 Preparing to unpack .../22-libmpc3_1.3.1-1+b3_amd64.deb ...
+#9 122.3 Unpacking libmpc3:amd64 (1.3.1-1+b3) ...
+#9 122.4 Selecting previously unselected package cpp-14-x86-64-linux-gnu.
+#9 122.4 Preparing to unpack .../23-cpp-14-x86-64-linux-gnu_14.2.0-19_amd64.deb ...
+#9 122.4 Unpacking cpp-14-x86-64-linux-gnu (14.2.0-19) ...
+#9 122.8 Selecting previously unselected package cpp-14.
+#9 122.8 Preparing to unpack .../24-cpp-14_14.2.0-19_amd64.deb ...
+#9 122.8 Unpacking cpp-14 (14.2.0-19) ...
+#9 122.9 Selecting previously unselected package cpp-x86-64-linux-gnu.
+#9 122.9 Preparing to unpack .../25-cpp-x86-64-linux-gnu_4%3a14.2.0-1_amd64.deb ...
+#9 122.9 Unpacking cpp-x86-64-linux-gnu (4:14.2.0-1) ...
+#9 123.0 Selecting previously unselected package cpp.
+#9 123.0 Preparing to unpack .../26-cpp_4%3a14.2.0-1_amd64.deb ...
+#9 123.0 Unpacking cpp (4:14.2.0-1) ...
+#9 123.1 Selecting previously unselected package libcc1-0:amd64.
+#9 123.1 Preparing to unpack .../27-libcc1-0_14.2.0-19_amd64.deb ...
+#9 123.1 Unpacking libcc1-0:amd64 (14.2.0-19) ...
+#9 123.2 Selecting previously unselected package libgomp1:amd64.
+#9 123.2 Preparing to unpack .../28-libgomp1_14.2.0-19_amd64.deb ...
+#9 123.2 Unpacking libgomp1:amd64 (14.2.0-19) ...
+#9 123.3 Selecting previously unselected package libitm1:amd64.
+#9 123.3 Preparing to unpack .../29-libitm1_14.2.0-19_amd64.deb ...
+#9 123.3 Unpacking libitm1:amd64 (14.2.0-19) ...
+#9 123.4 Selecting previously unselected package libatomic1:amd64.
+#9 123.4 Preparing to unpack .../30-libatomic1_14.2.0-19_amd64.deb ...
+#9 123.4 Unpacking libatomic1:amd64 (14.2.0-19) ...
+#9 123.5 Selecting previously unselected package libasan8:amd64.
+#9 123.5 Preparing to unpack .../31-libasan8_14.2.0-19_amd64.deb ...
+#9 123.5 Unpacking libasan8:amd64 (14.2.0-19) ...
+#9 123.6 Selecting previously unselected package liblsan0:amd64.
+#9 123.6 Preparing to unpack .../32-liblsan0_14.2.0-19_amd64.deb ...
+#9 123.6 Unpacking liblsan0:amd64 (14.2.0-19) ...
+#9 123.8 Selecting previously unselected package libtsan2:amd64.
+#9 123.8 Preparing to unpack .../33-libtsan2_14.2.0-19_amd64.deb ...
+#9 123.8 Unpacking libtsan2:amd64 (14.2.0-19) ...
+#9 123.9 Selecting previously unselected package libubsan1:amd64.
+#9 123.9 Preparing to unpack .../34-libubsan1_14.2.0-19_amd64.deb ...
+#9 123.9 Unpacking libubsan1:amd64 (14.2.0-19) ...
+#9 124.1 Selecting previously unselected package libhwasan0:amd64.
+#9 124.1 Preparing to unpack .../35-libhwasan0_14.2.0-19_amd64.deb ...
+#9 124.1 Unpacking libhwasan0:amd64 (14.2.0-19) ...
+#9 124.3 Selecting previously unselected package libquadmath0:amd64.
+#9 124.3 Preparing to unpack .../36-libquadmath0_14.2.0-19_amd64.deb ...
+#9 124.3 Unpacking libquadmath0:amd64 (14.2.0-19) ...
+#9 124.4 Selecting previously unselected package libgcc-14-dev:amd64.
+#9 124.4 Preparing to unpack .../37-libgcc-14-dev_14.2.0-19_amd64.deb ...
+#9 124.4 Unpacking libgcc-14-dev:amd64 (14.2.0-19) ...
+#9 124.6 Selecting previously unselected package gcc-14-x86-64-linux-gnu.
+#9 124.6 Preparing to unpack .../38-gcc-14-x86-64-linux-gnu_14.2.0-19_amd64.deb ...
+#9 124.6 Unpacking gcc-14-x86-64-linux-gnu (14.2.0-19) ...
+#9 125.2 Selecting previously unselected package gcc-14.
+#9 125.2 Preparing to unpack .../39-gcc-14_14.2.0-19_amd64.deb ...
+#9 125.2 Unpacking gcc-14 (14.2.0-19) ...
+#9 125.3 Selecting previously unselected package gcc-x86-64-linux-gnu.
+#9 125.3 Preparing to unpack .../40-gcc-x86-64-linux-gnu_4%3a14.2.0-1_amd64.deb ...
+#9 125.3 Unpacking gcc-x86-64-linux-gnu (4:14.2.0-1) ...
+#9 125.4 Selecting previously unselected package gcc.
+#9 125.4 Preparing to unpack .../41-gcc_4%3a14.2.0-1_amd64.deb ...
+#9 125.4 Unpacking gcc (4:14.2.0-1) ...
+#9 125.5 Selecting previously unselected package libstdc++-14-dev:amd64.
+#9 125.5 Preparing to unpack .../42-libstdc++-14-dev_14.2.0-19_amd64.deb ...
+#9 125.5 Unpacking libstdc++-14-dev:amd64 (14.2.0-19) ...
+#9 125.9 Selecting previously unselected package g++-14-x86-64-linux-gnu.
+#9 125.9 Preparing to unpack .../43-g++-14-x86-64-linux-gnu_14.2.0-19_amd64.deb ...
+#9 125.9 Unpacking g++-14-x86-64-linux-gnu (14.2.0-19) ...
+#9 126.3 Selecting previously unselected package g++-14.
+#9 126.3 Preparing to unpack .../44-g++-14_14.2.0-19_amd64.deb ...
+#9 126.3 Unpacking g++-14 (14.2.0-19) ...
+#9 126.4 Selecting previously unselected package g++-x86-64-linux-gnu.
+#9 126.4 Preparing to unpack .../45-g++-x86-64-linux-gnu_4%3a14.2.0-1_amd64.deb ...
+#9 126.4 Unpacking g++-x86-64-linux-gnu (4:14.2.0-1) ...
+#9 126.5 Selecting previously unselected package g++.
+#9 126.5 Preparing to unpack .../46-g++_4%3a14.2.0-1_amd64.deb ...
+#9 126.5 Unpacking g++ (4:14.2.0-1) ...
+#9 126.6 Selecting previously unselected package make.
+#9 126.6 Preparing to unpack .../47-make_4.4.1-2_amd64.deb ...
+#9 126.6 Unpacking make (4.4.1-2) ...
+#9 126.7 Selecting previously unselected package libdpkg-perl.
+#9 126.7 Preparing to unpack .../48-libdpkg-perl_1.22.21_all.deb ...
+#9 126.7 Unpacking libdpkg-perl (1.22.21) ...
+#9 126.8 Selecting previously unselected package patch.
+#9 126.8 Preparing to unpack .../49-patch_2.8-2_amd64.deb ...
+#9 126.8 Unpacking patch (2.8-2) ...
+#9 126.9 Selecting previously unselected package dpkg-dev.
+#9 126.9 Preparing to unpack .../50-dpkg-dev_1.22.21_all.deb ...
+#9 126.9 Unpacking dpkg-dev (1.22.21) ...
+#9 127.0 Selecting previously unselected package build-essential.
+#9 127.0 Preparing to unpack .../51-build-essential_12.12_amd64.deb ...
+#9 127.0 Unpacking build-essential (12.12) ...
+#9 127.1 Setting up libgdbm-compat4t64:amd64 (1.24-2) ...
+#9 127.1 Setting up binutils-common:amd64 (2.44-3) ...
+#9 127.1 Setting up linux-libc-dev (6.12.38-1) ...
+#9 127.1 Setting up libctf-nobfd0:amd64 (2.44-3) ...
+#9 127.1 Setting up libgomp1:amd64 (14.2.0-19) ...
+#9 127.1 Setting up bzip2 (1.0.8-6) ...
+#9 127.1 Setting up libsframe1:amd64 (2.44-3) ...
+#9 127.1 Setting up libjansson4:amd64 (2.14-2+b3) ...
+#9 127.2 Setting up rpcsvc-proto (1.4.3-1) ...
+#9 127.2 Setting up make (4.4.1-2) ...
+#9 127.2 Setting up libmpfr6:amd64 (4.2.2-1) ...
+#9 127.2 Setting up xz-utils (5.8.1-1) ...
+#9 127.2 update-alternatives: using /usr/bin/xz to provide /usr/bin/lzma (lzma) in auto mode
+#9 127.2 update-alternatives: warning: skip creation of /usr/share/man/man1/lzma.1.gz because associated file /usr/share/man/man1/xz.1.gz (of link group lzma) doesn't exist
+#9 127.2 update-alternatives: warning: skip creation of /usr/share/man/man1/unlzma.1.gz because associated file /usr/share/man/man1/unxz.1.gz (of link group lzma) doesn't exist
+#9 127.2 update-alternatives: warning: skip creation of /usr/share/man/man1/lzcat.1.gz because associated file /usr/share/man/man1/xzcat.1.gz (of link group lzma) doesn't exist
+#9 127.2 update-alternatives: warning: skip creation of /usr/share/man/man1/lzmore.1.gz because associated file /usr/share/man/man1/xzmore.1.gz (of link group lzma) doesn't exist
+#9 127.2 update-alternatives: warning: skip creation of /usr/share/man/man1/lzless.1.gz because associated file /usr/share/man/man1/xzless.1.gz (of link group lzma) doesn't exist
+#9 127.2 update-alternatives: warning: skip creation of /usr/share/man/man1/lzdiff.1.gz because associated file /usr/share/man/man1/xzdiff.1.gz (of link group lzma) doesn't exist
+#9 127.2 update-alternatives: warning: skip creation of /usr/share/man/man1/lzcmp.1.gz because associated file /usr/share/man/man1/xzcmp.1.gz (of link group lzma) doesn't exist
+#9 127.2 update-alternatives: warning: skip creation of /usr/share/man/man1/lzgrep.1.gz because associated file /usr/share/man/man1/xzgrep.1.gz (of link group lzma) doesn't exist
+#9 127.2 update-alternatives: warning: skip creation of /usr/share/man/man1/lzegrep.1.gz because associated file /usr/share/man/man1/xzegrep.1.gz (of link group lzma) doesn't exist
+#9 127.2 update-alternatives: warning: skip creation of /usr/share/man/man1/lzfgrep.1.gz because associated file /usr/share/man/man1/xzfgrep.1.gz (of link group lzma) doesn't exist
+#9 127.2 Setting up libquadmath0:amd64 (14.2.0-19) ...
+#9 127.2 Setting up libmpc3:amd64 (1.3.1-1+b3) ...
+#9 127.2 Setting up libatomic1:amd64 (14.2.0-19) ...
+#9 127.2 Setting up patch (2.8-2) ...
+#9 127.2 Setting up libubsan1:amd64 (14.2.0-19) ...
+#9 127.2 Setting up perl-modules-5.40 (5.40.1-6) ...
+#9 127.2 Setting up libhwasan0:amd64 (14.2.0-19) ...
+#9 127.2 Setting up libcrypt-dev:amd64 (1:4.4.38-1) ...
+#9 127.3 Setting up libasan8:amd64 (14.2.0-19) ...
+#9 127.3 Setting up libtsan2:amd64 (14.2.0-19) ...
+#9 127.3 Setting up libbinutils:amd64 (2.44-3) ...
+#9 127.3 Setting up libisl23:amd64 (0.27-1) ...
+#9 127.3 Setting up libc-dev-bin (2.41-12) ...
+#9 127.3 Setting up libcc1-0:amd64 (14.2.0-19) ...
+#9 127.3 Setting up liblsan0:amd64 (14.2.0-19) ...
+#9 127.3 Setting up libitm1:amd64 (14.2.0-19) ...
+#9 127.3 Setting up libctf0:amd64 (2.44-3) ...
+#9 127.3 Setting up libperl5.40:amd64 (5.40.1-6) ...
+#9 127.3 Setting up perl (5.40.1-6) ...
+#9 127.4 Setting up libgprofng0:amd64 (2.44-3) ...
+#9 127.4 Setting up cpp-14-x86-64-linux-gnu (14.2.0-19) ...
+#9 127.4 Setting up libdpkg-perl (1.22.21) ...
+#9 127.4 Setting up cpp-14 (14.2.0-19) ...
+#9 127.4 Setting up libc6-dev:amd64 (2.41-12) ...
+#9 127.4 Setting up libgcc-14-dev:amd64 (14.2.0-19) ...
+#9 127.4 Setting up libstdc++-14-dev:amd64 (14.2.0-19) ...
+#9 127.4 Setting up binutils-x86-64-linux-gnu (2.44-3) ...
+#9 127.4 Setting up cpp-x86-64-linux-gnu (4:14.2.0-1) ...
+#9 127.4 Setting up binutils (2.44-3) ...
+#9 127.4 Setting up dpkg-dev (1.22.21) ...
+#9 127.4 Setting up cpp (4:14.2.0-1) ...
+#9 127.5 Setting up gcc-14-x86-64-linux-gnu (14.2.0-19) ...
+#9 127.5 Setting up gcc-x86-64-linux-gnu (4:14.2.0-1) ...
+#9 127.5 Setting up gcc-14 (14.2.0-19) ...
+#9 127.5 Setting up g++-14-x86-64-linux-gnu (14.2.0-19) ...
+#9 127.5 Setting up g++-x86-64-linux-gnu (4:14.2.0-1) ...
+#9 127.5 Setting up g++-14 (14.2.0-19) ...
+#9 127.5 Setting up gcc (4:14.2.0-1) ...
+#9 127.6 Setting up g++ (4:14.2.0-1) ...
+#9 127.6 update-alternatives: using /usr/bin/g++ to provide /usr/bin/c++ (c++) in auto mode
+#9 127.6 Setting up build-essential (12.12) ...
+#9 127.6 Processing triggers for libc-bin (2.41-12) ...
+#9 DONE 128.1s
+
+#23 [linux/amd64 builder 3/5] WORKDIR /app
+#23 DONE 0.1s
+
+#24 [linux/amd64 builder 4/5] COPY requirements.txt .
+#24 DONE 0.0s
+
+#25 [linux/amd64 builder 5/5] RUN pip install --no-cache-dir --upgrade pip &&     pip install --no-cache-dir -r requirements.txt
+#25 1.509 Requirement already satisfied: pip in /usr/local/lib/python3.9/site-packages (23.0.1)
+#25 1.688 Collecting pip
+#25 1.738   Downloading pip-25.2-py3-none-any.whl (1.8 MB)
+#25 1.900      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 11.2 MB/s eta 0:00:00
+#25 1.955 Installing collected packages: pip
+#25 1.955   Attempting uninstall: pip
+#25 1.956     Found existing installation: pip 23.0.1
+#25 2.073     Uninstalling pip-23.0.1:
+#25 2.193       Successfully uninstalled pip-23.0.1
+#25 2.783 Successfully installed pip-25.2
+#25 2.784 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#25 3.358 Collecting pika==1.3.2 (from -r requirements.txt (line 1))
+#25 3.393   Downloading pika-1.3.2-py3-none-any.whl.metadata (13 kB)
+#25 3.564 Collecting pandas==2.1.4 (from -r requirements.txt (line 2))
+#25 3.574   Downloading pandas-2.1.4-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (18 kB)
+#25 3.621 Collecting python-dotenv==1.0.0 (from -r requirements.txt (line 3))
+#25 3.630   Downloading python_dotenv-1.0.0-py3-none-any.whl.metadata (21 kB)
+#25 3.658 Collecting structlog==23.2.0 (from -r requirements.txt (line 4))
+#25 3.670   Downloading structlog-23.2.0-py3-none-any.whl.metadata (7.6 kB)
+#25 3.718 Collecting fastapi==0.104.1 (from -r requirements.txt (line 5))
+#25 3.727   Downloading fastapi-0.104.1-py3-none-any.whl.metadata (24 kB)
+#25 3.766 Collecting uvicorn==0.24.0 (from -r requirements.txt (line 6))
+#25 3.775   Downloading uvicorn-0.24.0-py3-none-any.whl.metadata (6.4 kB)
+#25 3.978 Collecting numpy<2,>=1.22.4 (from pandas==2.1.4->-r requirements.txt (line 2))
+#25 3.989   Downloading numpy-1.26.4-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (61 kB)
+#25 4.024 Collecting python-dateutil>=2.8.2 (from pandas==2.1.4->-r requirements.txt (line 2))
+#25 4.035   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+#25 4.091 Collecting pytz>=2020.1 (from pandas==2.1.4->-r requirements.txt (line 2))
+#25 4.100   Downloading pytz-2025.2-py2.py3-none-any.whl.metadata (22 kB)
+#25 4.123 Collecting tzdata>=2022.1 (from pandas==2.1.4->-r requirements.txt (line 2))
+#25 4.132   Downloading tzdata-2025.2-py2.py3-none-any.whl.metadata (1.4 kB)
+#25 4.157 Collecting anyio<4.0.0,>=3.7.1 (from fastapi==0.104.1->-r requirements.txt (line 5))
+#25 4.169   Downloading anyio-3.7.1-py3-none-any.whl.metadata (4.7 kB)
+#25 4.353 Collecting pydantic!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0,>=1.7.4 (from fastapi==0.104.1->-r requirements.txt (line 5))
+#25 4.368   Downloading pydantic-2.11.7-py3-none-any.whl.metadata (67 kB)
+#25 4.432 Collecting starlette<0.28.0,>=0.27.0 (from fastapi==0.104.1->-r requirements.txt (line 5))
+#25 4.442   Downloading starlette-0.27.0-py3-none-any.whl.metadata (5.8 kB)
+#25 4.795 Collecting typing-extensions>=4.8.0 (from fastapi==0.104.1->-r requirements.txt (line 5))
+#25 4.806   Downloading typing_extensions-4.14.1-py3-none-any.whl.metadata (3.0 kB)
+#25 5.083 Collecting click>=7.0 (from uvicorn==0.24.0->-r requirements.txt (line 6))
+#25 5.095   Downloading click-8.1.8-py3-none-any.whl.metadata (2.3 kB)
+#25 5.113 Collecting h11>=0.8 (from uvicorn==0.24.0->-r requirements.txt (line 6))
+#25 5.123   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+#25 5.153 Collecting idna>=2.8 (from anyio<4.0.0,>=3.7.1->fastapi==0.104.1->-r requirements.txt (line 5))
+#25 5.164   Downloading idna-3.10-py3-none-any.whl.metadata (10 kB)
+#25 5.179 Collecting sniffio>=1.1 (from anyio<4.0.0,>=3.7.1->fastapi==0.104.1->-r requirements.txt (line 5))
+#25 5.190   Downloading sniffio-1.3.1-py3-none-any.whl.metadata (3.9 kB)
+#25 5.210 Collecting exceptiongroup (from anyio<4.0.0,>=3.7.1->fastapi==0.104.1->-r requirements.txt (line 5))
+#25 5.220   Downloading exceptiongroup-1.3.0-py3-none-any.whl.metadata (6.7 kB)
+#25 5.236 Collecting annotated-types>=0.6.0 (from pydantic!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0,>=1.7.4->fastapi==0.104.1->-r requirements.txt (line 5))
+#25 5.247   Downloading annotated_types-0.7.0-py3-none-any.whl.metadata (15 kB)
+#25 6.233 Collecting pydantic-core==2.33.2 (from pydantic!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0,>=1.7.4->fastapi==0.104.1->-r requirements.txt (line 5))
+#25 6.245   Downloading pydantic_core-2.33.2-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.8 kB)
+#25 6.262 Collecting typing-inspection>=0.4.0 (from pydantic!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0,>=1.7.4->fastapi==0.104.1->-r requirements.txt (line 5))
+#25 6.272   Downloading typing_inspection-0.4.1-py3-none-any.whl.metadata (2.6 kB)
+#25 6.309 Collecting six>=1.5 (from python-dateutil>=2.8.2->pandas==2.1.4->-r requirements.txt (line 2))
+#25 6.319   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+#25 6.340 Downloading pika-1.3.2-py3-none-any.whl (155 kB)
+#25 6.437 Downloading pandas-2.1.4-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (12.3 MB)
+#25 10.55    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.3/12.3 MB 3.1 MB/s  0:00:04
+#25 10.56 Downloading python_dotenv-1.0.0-py3-none-any.whl (19 kB)
+#25 10.58 Downloading structlog-23.2.0-py3-none-any.whl (62 kB)
+#25 10.63 Downloading fastapi-0.104.1-py3-none-any.whl (92 kB)
+#25 10.68 Downloading uvicorn-0.24.0-py3-none-any.whl (59 kB)
+#25 10.73 Downloading anyio-3.7.1-py3-none-any.whl (80 kB)
+#25 10.77 Downloading numpy-1.26.4-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.2 MB)
+#25 17.09    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 18.2/18.2 MB 2.9 MB/s  0:00:06
+#25 17.11 Downloading pydantic-2.11.7-py3-none-any.whl (444 kB)
+#25 17.33 Downloading pydantic_core-2.33.2-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.0 MB)
+#25 18.06    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 2.7 MB/s  0:00:00
+#25 18.08 Downloading starlette-0.27.0-py3-none-any.whl (66 kB)
+#25 18.11 Downloading annotated_types-0.7.0-py3-none-any.whl (13 kB)
+#25 18.12 Downloading click-8.1.8-py3-none-any.whl (98 kB)
+#25 18.15 Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+#25 18.16 Downloading idna-3.10-py3-none-any.whl (70 kB)
+#25 18.19 Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+#25 18.26 Downloading pytz-2025.2-py2.py3-none-any.whl (509 kB)
+#25 18.42 Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+#25 18.44 Downloading sniffio-1.3.1-py3-none-any.whl (10 kB)
+#25 18.45 Downloading typing_extensions-4.14.1-py3-none-any.whl (43 kB)
+#25 18.47 Downloading typing_inspection-0.4.1-py3-none-any.whl (14 kB)
+#25 18.49 Downloading tzdata-2025.2-py2.py3-none-any.whl (347 kB)
+#25 18.68 Downloading exceptiongroup-1.3.0-py3-none-any.whl (16 kB)
+#25 18.93 Installing collected packages: pytz, tzdata, typing-extensions, structlog, sniffio, six, python-dotenv, pika, numpy, idna, h11, click, annotated-types, uvicorn, typing-inspection, python-dateutil, pydantic-core, exceptiongroup, pydantic, pandas, anyio, starlette, fastapi
+#25 23.98 
+#25 23.98 Successfully installed annotated-types-0.7.0 anyio-3.7.1 click-8.1.8 exceptiongroup-1.3.0 fastapi-0.104.1 h11-0.16.0 idna-3.10 numpy-1.26.4 pandas-2.1.4 pika-1.3.2 pydantic-2.11.7 pydantic-core-2.33.2 python-dateutil-2.9.0.post0 python-dotenv-1.0.0 pytz-2025.2 six-1.17.0 sniffio-1.3.1 starlette-0.27.0 structlog-23.2.0 typing-extensions-4.14.1 typing-inspection-0.4.1 tzdata-2025.2 uvicorn-0.24.0
+#25 23.98 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#25 DONE 24.4s
+
+#26 [linux/amd64 production 5/8] COPY --from=builder /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
+#26 DONE 0.8s
+
+#27 [linux/amd64 production 6/8] COPY --from=builder /usr/local/bin /usr/local/bin
+#27 DONE 0.0s
+
+#28 [linux/amd64 production 7/8] COPY --chown=iaqagent:iaqagent . .
+#28 DONE 0.0s
+
+#29 [linux/amd64 production 8/8] RUN mkdir -p /app/data /app/logs &&     chown -R iaqagent:iaqagent /app/data /app/logs
+#29 DONE 0.1s
+
+#30 exporting to image
+#30 exporting layers
+#30 exporting layers 3.4s done
+#30 exporting manifest sha256:d56b8be96aa4228ae86bfb2a3b04c2efda4f5e1ac4712648cdd6bbb4a02524f0 done
+#30 exporting config sha256:453f258043373db2e14844c9b99280408eccf391cd7fdb9683bd8e62396ecf3c done
+#30 exporting attestation manifest sha256:65c9204227c7d24d34cc2cd083de2c0c10cf3ac956d6de5a5ff0f4b9b99421d4 done
+#30 exporting manifest sha256:7312af73b55740792576c6c60e33354101779d6fba590a580236e78b869fdede done
+#30 exporting config sha256:624f24ae58adc0512c0d8570a0337ae781ff803bb005c7f392c415f046adc4e2 done
+#30 exporting attestation manifest sha256:51997fac21bef435b7637dd53c9615a45a95595b302d22406a6561ab262699ee done
+#30 exporting manifest list sha256:391a8704fb980bf38c2c53dae9c5ca733e3db02df276e47d60d203b5a811b17e done
+#30 pushing layers
+#30 ...
+
+#31 [auth] iaq-agent:pull,push token for testiotacr.azurecr.io
+#31 DONE 0.0s
+
+#30 exporting to image
+#30 ...
+
+#32 [auth] datalogger-agent:pull iaq-agent:pull,push token for testiotacr.azurecr.io
+#32 DONE 0.0s
+
+#30 exporting to image
+#30 pushing layers 30.4s done
+#30 pushing manifest for testiotacr.azurecr.io/iaq-agent:v1@sha256:391a8704fb980bf38c2c53dae9c5ca733e3db02df276e47d60d203b5a811b17e
+#30 pushing manifest for testiotacr.azurecr.io/iaq-agent:v1@sha256:391a8704fb980bf38c2c53dae9c5ca733e3db02df276e47d60d203b5a811b17e 1.9s done
+#30 DONE 35.8s
+
+ [33m2 warnings found (use docker --debug to expand):
+[0m - FromAsCasing: 'as' and 'FROM' keywords' casing do not match (line 38)
+ - FromAsCasing: 'as' and 'FROM' keywords' casing do not match (line 5)
+
+View build details: docker-desktop://dashboard/build/modest_lumiere/modest_lumiere0/vwimh1nbqy14e9hbdsefg59rf
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (pull image from acr)
+[Pipeline] sshagent
+[ssh-agent] Using credentials testdevops (test ssh)
+$ ssh-agent
+SSH_AUTH_SOCK=/var/folders/h2/blfw6g7j0jl7vjwvt2zqcf2w0000gn/T//ssh-StnSIX8fraRS/agent.55758
+SSH_AGENT_PID=55759
+Running ssh-add (command line suppressed)
+Identity added: /Users/ikkyu/root/workspace/test/iot-build-deploy@tmp/private_key_6230352160888678972.key (ikkyu@chakorns-MacBook-Air.local)
+[ssh-agent] Started.
+[Pipeline] {
+[Pipeline] withCredentials
+Masking supported pattern matches of $AZURE_SUBSCRIPTION_ID or $AZURE_TENANT_ID or $AZURE_CLIENT_SECRET or $AZURE_CLIENT_ID
+[Pipeline] {
+[Pipeline] sh
+Warning: A secret was passed to "sh" using Groovy String interpolation, which is insecure.
+		 Affected argument(s) used the following variable(s): [AZURE_TENANT_ID, AZURE_CLIENT_SECRET, AZURE_CLIENT_ID]
+		 See https://jenkins.io/redirect/groovy-string-interpolation for details.
++ ssh -o StrictHostKeyChecking=no testdevops@20.6.33.223 '
+                            az login --service-principal -u **** -p **** --tenant ****
+                            az acr login --name testiotacr
+                            docker pull testiotacr.azurecr.io/iaq-agent:v1
+                            '
+[
+  {
+    "cloudName": "AzureCloud",
+    "homeTenantId": "****",
+    "id": "****",
+    "isDefault": true,
+    "managedByTenants": [],
+    "name": "Azure devops-subscription",
+    "state": "Enabled",
+    "tenantId": "****",
+    "user": {
+      "name": "****",
+      "type": "servicePrincipal"
+    }
+  }
+]
+Login Succeeded
+v1: Pulling from iaq-agent
+396b1da7636e: Already exists
+0219e1e5e6ef: Pulling fs layer
+5ec99fe17015: Pulling fs layer
+ea3499df304f: Pulling fs layer
+571b0055449c: Pulling fs layer
+b45d90c65608: Pulling fs layer
+be55a3973248: Pulling fs layer
+4897c975478a: Pulling fs layer
+a6d021174940: Pulling fs layer
+458b525fa664: Pulling fs layer
+228958d3819a: Pulling fs layer
+571b0055449c: Waiting
+b45d90c65608: Waiting
+be55a3973248: Waiting
+4897c975478a: Waiting
+a6d021174940: Waiting
+458b525fa664: Waiting
+228958d3819a: Waiting
+ea3499df304f: Verifying Checksum
+ea3499df304f: Download complete
+0219e1e5e6ef: Verifying Checksum
+0219e1e5e6ef: Download complete
+b45d90c65608: Verifying Checksum
+b45d90c65608: Download complete
+571b0055449c: Verifying Checksum
+571b0055449c: Download complete
+be55a3973248: Verifying Checksum
+be55a3973248: Download complete
+5ec99fe17015: Verifying Checksum
+5ec99fe17015: Download complete
+a6d021174940: Verifying Checksum
+a6d021174940: Download complete
+458b525fa664: Verifying Checksum
+458b525fa664: Download complete
+228958d3819a: Verifying Checksum
+228958d3819a: Download complete
+0219e1e5e6ef: Pull complete
+4897c975478a: Verifying Checksum
+4897c975478a: Download complete
+5ec99fe17015: Pull complete
+ea3499df304f: Pull complete
+571b0055449c: Pull complete
+b45d90c65608: Pull complete
+be55a3973248: Pull complete
+4897c975478a: Pull complete
+a6d021174940: Pull complete
+458b525fa664: Pull complete
+228958d3819a: Pull complete
+Digest: sha256:391a8704fb980bf38c2c53dae9c5ca733e3db02df276e47d60d203b5a811b17e
+Status: Downloaded newer image for testiotacr.azurecr.io/iaq-agent:v1
+testiotacr.azurecr.io/iaq-agent:v1
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+$ ssh-agent -k
+unset SSH_AUTH_SOCK;
+unset SSH_AGENT_PID;
+echo Agent pid 55759 killed;
+[ssh-agent] Stopped.
+[Pipeline] // sshagent
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (prepare)
+[Pipeline] sshagent
+[ssh-agent] Using credentials testdevops (test ssh)
+$ ssh-agent
+SSH_AUTH_SOCK=/var/folders/h2/blfw6g7j0jl7vjwvt2zqcf2w0000gn/T//ssh-HynK8Uxeqs4M/agent.55804
+SSH_AGENT_PID=55805
+Running ssh-add (command line suppressed)
+Identity added: /Users/ikkyu/root/workspace/test/iot-build-deploy@tmp/private_key_14688177068075206877.key (ikkyu@chakorns-MacBook-Air.local)
+[ssh-agent] Started.
+[Pipeline] {
+[Pipeline] sh
++ ssh -o StrictHostKeyChecking=no testdevops@20.6.33.223 '
+                        if [ -d testiot ]; then
+                            echo Directory' testiot exists, pulling latest 'changes
+                            cd testiot && git pull
+                        else
+                            echo Directory' testiot does not exist, cloning 'repository
+                            git clone https://github.com/Q-Chakorn/testiot.git
+                        fi
+                    '
+Directory testiot exists, pulling latest changes
+Already up to date.
+[Pipeline] }
+$ ssh-agent -k
+unset SSH_AUTH_SOCK;
+unset SSH_AGENT_PID;
+echo Agent pid 55805 killed;
+[ssh-agent] Stopped.
+[Pipeline] // sshagent
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (deploy)
+[Pipeline] sshagent
+[ssh-agent] Using credentials testdevops (test ssh)
+$ ssh-agent
+SSH_AUTH_SOCK=/var/folders/h2/blfw6g7j0jl7vjwvt2zqcf2w0000gn/T//ssh-WasVY2BqagW4/agent.55817
+SSH_AGENT_PID=55818
+Running ssh-add (command line suppressed)
+Identity added: /Users/ikkyu/root/workspace/test/iot-build-deploy@tmp/private_key_13390123209442722911.key (ikkyu@chakorns-MacBook-Air.local)
+[ssh-agent] Started.
+[Pipeline] {
+[Pipeline] sh
++ ssh -o StrictHostKeyChecking=no testdevops@20.6.33.223 '
+                        cd /home/testdevops/testiot
+                        docker-compose -f 3.iaq-agent.yaml down
+                        docker-compose -f 3.iaq-agent.yaml up -d
+                        '
+Stopping iaq-sensor-agent ... 
+Stopping iaq-sensor-agent ... done
+Found orphan containers (datalogger-agent) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up.
+Removing iaq-sensor-agent ... 
+Removing iaq-sensor-agent ... done
+Network iot-shared-network is external, skipping
+Found orphan containers (datalogger-agent) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up.
+Creating iaq-sensor-agent ... 
+Creating iaq-sensor-agent ... done
+[Pipeline] }
+$ ssh-agent -k
+unset SSH_AUTH_SOCK;
+unset SSH_AGENT_PID;
+echo Agent pid 55818 killed;
+[ssh-agent] Stopped.
+[Pipeline] // sshagent
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
